@@ -3,6 +3,7 @@ package no.ntnu.idatg2001.units;
 /**
  * An abstract class that represents a unit.
  * Provides basic functionality of a unit.
+ *
  * @author Andreas Follevaag Malde
  * @version 0.0.1 (08.02.2022)
  */

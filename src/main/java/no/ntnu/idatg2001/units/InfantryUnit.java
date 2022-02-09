@@ -5,6 +5,7 @@ package no.ntnu.idatg2001.units;
  * Has the default unit functionality.
  * The unit has a strength in close combat, but
  * also low on resistance if attacked.
+ *
  * @author Andreas Follevaag Malde
  * @version 0.0.1 (08.02.2022)
  */

@@ -5,6 +5,7 @@ package no.ntnu.idatg2001.units;
  * Has the default unit functionality.
  * The unit has a strength to attack from long range.
  * The ability to resist an attack decreases over time until a limit is reached.
+ *
  * @author Andreas Follevaag Malde
  * @version 0.0.1 (08.02.2022)
  */
@@ -13,9 +14,8 @@ public class RangedUnit extends Unit{
   private int timesAttacked; // Variable to hold count of amount of times attacked
 
   /**
-   * Constructor of the unit class. Used to initialize a new
-   * base object with basic unit functionality to extend from.
-   *
+   * Constructor of the ranged unit class. Used to initialize a new
+   * object based on the unit class with extra ranged unit functionality
    * @param name   name of the unit
    * @param health starting health of the unit
    * @param attack starting attack value of the unit
