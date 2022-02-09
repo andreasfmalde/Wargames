@@ -26,9 +26,15 @@ public abstract class Unit {
     if(name.isBlank() || name.isEmpty()){
       throw new IllegalArgumentException("Name can not be blank!");
     }
+    else if(attack < 0){
+      throw new IllegalArgumentException("Attack value can not be less than 0");
+    }
+    else if(armor < 0){
+      throw new IllegalArgumentException("Armor value can not be less than 0");
+    }
+
     this.name = name;
     this.setHealth(health);
-    //TODO: Update constructor to check for valid attack and armor values
     this.attack = attack;
     this.armor = armor;
   }
