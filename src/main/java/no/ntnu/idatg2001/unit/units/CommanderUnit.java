@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001.units;
+package no.ntnu.idatg2001.unit.units;
 
 /**
  * The commander unit class is a more capable

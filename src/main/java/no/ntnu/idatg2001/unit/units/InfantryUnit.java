@@ -1,4 +1,6 @@
-package no.ntnu.idatg2001.units;
+package no.ntnu.idatg2001.unit.units;
+
+import no.ntnu.idatg2001.unit.Unit;
 
 /**
  * A class that describes an infantry unit.
@@ -9,7 +11,7 @@ package no.ntnu.idatg2001.units;
  * @author Andreas Follevaag Malde
  * @version 0.0.1 (08.02.2022)
  */
-public class InfantryUnit extends Unit{
+public class InfantryUnit extends Unit {
 
   /**
    * Constructor of the infantry unit class. Used to initialize a new

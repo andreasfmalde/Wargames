@@ -1,4 +1,6 @@
-package no.ntnu.idatg2001.units;
+package no.ntnu.idatg2001.unit.units;
+
+import no.ntnu.idatg2001.unit.Unit;
 
 /**
  * A class describing a cavalry unit.
@@ -10,7 +12,7 @@ package no.ntnu.idatg2001.units;
  * @author Andreas Follevaag Malde
  * @version 0.0.1 (09.02.2022)
  */
-public class CavalryUnit extends Unit{
+public class CavalryUnit extends Unit {
 
   private boolean firstAttack; // True when the unit has attacked at least one time
 

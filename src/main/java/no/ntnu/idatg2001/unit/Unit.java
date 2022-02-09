@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001.units;
+package no.ntnu.idatg2001.unit;
 
 /**
  * An abstract class that represents a unit.
