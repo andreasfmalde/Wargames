@@ -97,7 +97,8 @@ public abstract class Unit {
   public void attack(Unit opponent){
     int newHealth = opponent.getHealth() - (this.attack + this.getAttackBonus())+
         (opponent.getArmor() + opponent.getResistBonus());
-    opponent.setHealth(newHealth);
+    opponent.setHealth(Math.max(newHealth, 0));
+
   }
 
   /**
