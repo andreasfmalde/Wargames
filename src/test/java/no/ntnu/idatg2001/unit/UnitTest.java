@@ -6,24 +6,33 @@ import no.ntnu.idatg2001.unit.units.CavalryUnit;
 import no.ntnu.idatg2001.unit.units.CommanderUnit;
 import no.ntnu.idatg2001.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.unit.units.RangedUnit;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UnitTest {
 
+  Unit infantry;
+  Unit ranged;
+  Unit cavalry;
+  Unit commander;
+
+  @BeforeEach
+  void init(){
+    infantry = new InfantryUnit("Infantry",100);
+    ranged = new RangedUnit("Ranged",150);
+    cavalry = new CavalryUnit("Cavalry",180);
+    commander = new CommanderUnit("Infantry",200);
+  }
 
   @Test
   void constructorTest(){
-    Unit infantry = new InfantryUnit("Infantry",100);
-    Unit ranged = new RangedUnit("Ranged",150);
-    Unit cavalry = new CavalryUnit("Cavalry",180);
-    Unit commander = new CommanderUnit("Infantry",200);
 
     //Infantry
     assertEquals(15,infantry.getAttack());
     assertEquals(10,infantry.getArmor());
     try{
-      Unit anotherInfantry = new InfantryUnit("",100,10,30);
-      assertEquals("Something",anotherInfantry.getName());
+      new InfantryUnit("",100,10,30);
+      fail();
     }catch (IllegalArgumentException e){
       assertEquals("Name can not be blank!",e.getMessage());
     }
@@ -32,8 +41,8 @@ class UnitTest {
     assertEquals(15,ranged.getAttack());
     assertEquals(8,ranged.getArmor());
     try{
-      Unit anotherRanged = new RangedUnit("another",-10,10,30);
-      assertEquals(-9,anotherRanged.getHealth());
+      new RangedUnit("another",-10,10,30);
+      fail();
     }catch (IllegalArgumentException e){
       assertEquals("Health can not be less than 0",e.getMessage());
     }
@@ -42,8 +51,8 @@ class UnitTest {
     assertEquals(20,cavalry.getAttack());
     assertEquals(12,cavalry.getArmor());
     try{
-      Unit anotherCavalry = new CavalryUnit("another",100,-10,30);
-      assertEquals(-9,anotherCavalry.getHealth());
+      new CavalryUnit("another",100,-10,30);
+      fail();
     }catch (IllegalArgumentException e){
       assertEquals("Attack value can not be less than 0",e.getMessage());
     }
@@ -52,8 +61,8 @@ class UnitTest {
     assertEquals(25,commander.getAttack());
     assertEquals(15,commander.getArmor());
     try{
-      Unit anotherCommander = new CommanderUnit("another",100,10,-30);
-      assertEquals(-9,anotherCommander.getHealth());
+      new CommanderUnit("another",100,10,-30);
+      fail();
     }catch (IllegalArgumentException e){
       assertEquals("Armor value can not be less than 0",e.getMessage());
     }
@@ -62,10 +71,6 @@ class UnitTest {
 
   @Test
   void attack(){
-    Unit infantry = new InfantryUnit("Infantry",100);
-    Unit ranged = new RangedUnit("Ranged",150);
-    Unit cavalry = new CavalryUnit("Cavalry",180);
-    Unit commander = new CommanderUnit("Infantry",200);
 
     infantry.attack(ranged);
     // health = 150 - (15 + 2) + (8 + 6) = 150 - 17 + 14 = 147
@@ -93,10 +98,6 @@ class UnitTest {
 
   @Test
   void getAttackBonus(){
-    Unit infantry = new InfantryUnit("Infantry",100);
-    Unit ranged = new RangedUnit("Ranged",150);
-    Unit cavalry = new CavalryUnit("Cavalry",180);
-    Unit commander = new CommanderUnit("Infantry",200);
 
     // Infantry
     assertEquals(2,infantry.getAttackBonus());
@@ -120,10 +121,6 @@ class UnitTest {
 
   @Test
   void getResistBonus(){
-    Unit infantry = new InfantryUnit("Infantry",100);
-    Unit ranged = new RangedUnit("Ranged",150);
-    Unit cavalry = new CavalryUnit("Cavalry",180);
-    Unit commander = new CommanderUnit("Infantry",200);
 
     // Infantry
     assertEquals(1,infantry.getResistBonus());
