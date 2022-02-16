@@ -2,16 +2,27 @@ package no.ntnu.idatg2001.army;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import no.ntnu.idatg2001.unit.Unit;
 
+/**
+ * Class that represents an army containing different units.
+ * @author Andreas Follevaag Malde
+ * @version 1.0 - SNAPSHOT (16.02.2022)
+ */
 public class Army {
 
   private String name;
   private List<Unit> units;
-  private Random random;
+  private final Random random;
 
 
+  /**
+   * Constructor to initialize an empty army class
+   * containing no units at the point of initialization.
+   * @param name of the army
+   */
   public Army(String name) {
     this.setName(name);
     this.units = new ArrayList<>();
@@ -74,8 +85,25 @@ public class Army {
     return units.get(random.nextInt(units.size()));
   }
 
+  @Override
+  public String toString() {
+    return "[ Army: "+name+" | Units: "+units.size()+" ]";
+  }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Army army = (Army) o;
+    return Objects.equals(name, army.name) && Objects.equals(units, army.units);
+  }
 
-
-
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, units);
+  }
 }
