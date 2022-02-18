@@ -9,7 +9,7 @@ import no.ntnu.idatg2001.unit.Unit;
  * also low on resistance if attacked.
  *
  * @author Andreas Follevaag Malde
- * @version 0.0.1 (08.02.2022)
+ * @version 1.0 - SNAPSHOT (08.02.2022)
  */
 public class InfantryUnit extends Unit {
 

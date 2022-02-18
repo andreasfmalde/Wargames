@@ -9,7 +9,7 @@ import no.ntnu.idatg2001.unit.Unit;
  * The ability to resist an attack decreases over time until a limit is reached.
  *
  * @author Andreas Follevaag Malde
- * @version 0.0.1 (08.02.2022)
+ * @version 1.0 - SNAPSHOT (08.02.2022)
  */
 public class RangedUnit extends Unit {
 

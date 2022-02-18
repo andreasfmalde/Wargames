@@ -5,7 +5,7 @@ package no.ntnu.idatg2001.unit;
  * Provides basic functionality of a unit.
  *
  * @author Andreas Follevaag Malde
- * @version 0.0.1 (08.02.2022)
+ * @version 1.0 - SNAPSHOT (08.02.2022)
  */
 public abstract class Unit {
 
