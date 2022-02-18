@@ -29,6 +29,12 @@ public class Army {
     random = new Random();
   }
 
+  /**
+   * Constructor to initialize a new army object filled
+   * with units provided during the initialization.
+   * @param name Name of the army
+   * @param units List of units to add at the start
+   */
   public Army(String name, List<Unit> units) {
     this.setName(name);
     if(units == null){
@@ -38,6 +44,11 @@ public class Army {
     random = new Random();
   }
 
+  /**
+   * Method to set the name of the army.
+   * Private method only for use in the class.
+   * @param name Name of the army
+   */
   private void setName(String name){
     if(name.isEmpty() || name.isBlank()){
       throw new IllegalArgumentException("Name can not be empty or blank");
@@ -45,10 +56,19 @@ public class Army {
     this.name = name;
   }
 
+  /**
+   *
+   * @return name of the army
+   */
   public String getName(){
     return name;
   }
 
+  /**
+   * Add a new unit to the army.
+   * @param unit Unit to add to the army
+   * @return true if the operation was successful
+   */
   public boolean add(Unit unit){
     if(unit == null){
       return false;
@@ -57,6 +77,11 @@ public class Army {
     return true;
   }
 
+  /**
+   * Add several units to the army at once
+   * @param units List of units to add to the army
+   * @return true if the operation was successful
+   */
   public boolean addAll(List<Unit> units){
     if(units == null || units.isEmpty()){
       return false;
@@ -65,6 +90,12 @@ public class Army {
     return true;
   }
 
+  /**
+   * Remove a unit from the army. I.e. if the unit
+   * has lost all its health
+   * @param unit Unit to remove from the army
+   * @return true if the operation was successful
+   */
   public boolean remove(Unit unit){
     if(unit != null && units.contains(unit)){
       units.remove(unit);
@@ -73,23 +104,46 @@ public class Army {
     return false;
   }
 
+  /**
+   * Method informing if there are any units in
+   * the army or not
+   * @return true if there are at least one unit in the army
+   */
   public boolean hasUnits(){
     return !units.isEmpty();
   }
 
+  /**
+   * Get all the units currently in the army
+   * @return List of all units in the army
+   */
   public List<Unit> getAllUnits(){
     return this.units;
   }
 
+  /**
+   * Get a random unit from the army
+   * @return a unit in the army
+   */
   public Unit getRandom(){
     return units.get(random.nextInt(units.size()));
   }
 
+  /**
+   * Overriding the default toString method.
+   * @return a better visual string representation of the army object
+   */
   @Override
   public String toString() {
     return "[ Army: "+name+" | Units: "+units.size()+" ]";
   }
 
+  /**
+   * Overriding the default equals method.
+   * Compare to army objects based on the name and unit list.
+   * @param o Object to compare against
+   * @return true if the objects are the same
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -102,6 +156,10 @@ public class Army {
     return Objects.equals(name, army.name) && Objects.equals(units, army.units);
   }
 
+  /**
+   * Overriding the default hashcode
+   * @return a hashcode based on the name of the army and the unit list
+   */
   @Override
   public int hashCode() {
     return Objects.hash(name, units);
