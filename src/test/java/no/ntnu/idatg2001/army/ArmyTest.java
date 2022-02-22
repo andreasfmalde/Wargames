@@ -12,12 +12,23 @@ import no.ntnu.idatg2001.unit.units.RangedUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for the army class to make sure
+ * the core functionality work as intended.
+ * @author Andreas Follevaag Malde
+ * @version 1.0 - SNAPSHOT (22.02.2022)
+ */
 class ArmyTest {
 
   private Army norwegianArmy;
   private Army swedishArmy;
   private List<Unit> unitList;
 
+  /**
+   * Initialization method that will be called
+   * before each test method. The method will
+   * initialize two armies and a unit list.
+   */
   @BeforeEach
   void init(){
     // Initialize army classes used for testing
@@ -31,6 +42,12 @@ class ArmyTest {
 
   }
 
+  /**
+   * Testing method to make sure the constructor
+   * of the army test works as intended.
+   * Also testing for the constructor to handle
+   * wrong input.
+   */
   @Test
   void constructorTest(){
     Army army = new Army("Test army",unitList);
@@ -59,6 +76,12 @@ class ArmyTest {
 
   }
 
+  /**
+   * Method used for testing the ability of the
+   * class to add units to the army. Both the ability
+   * to add a single unit, but also the ability to add
+   * a list of units the army.
+   */
   @Test
   void addToArmy(){
 
@@ -84,6 +107,13 @@ class ArmyTest {
 
   }
 
+
+  /**
+   * Testing the remove method of the army class.
+   * Making sure units are removed if they
+   * are in the list, and skipped if they are not
+   * in the list.
+   */
   @Test
   void remove(){
     norwegianArmy.addAll(unitList);
@@ -106,6 +136,12 @@ class ArmyTest {
 
   }
 
+  /**
+   * Testing the getRandom method.
+   * Using the getRandom method to get three random units
+   * from the army. The possibility that all the three
+   * chosen units are the same, is small
+   */
   @Test
   void getRandom(){
     norwegianArmy.addAll(unitList);
@@ -121,6 +157,11 @@ class ArmyTest {
 
   }
 
+  /**
+   * Testing the equals' method to make sure
+   * it compares the army objects as intended. Only comparing
+   * based on the name and the unit list.
+   */
   @Test
   void equals(){
     Army army = new Army("Army");

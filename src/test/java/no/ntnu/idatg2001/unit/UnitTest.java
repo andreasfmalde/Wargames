@@ -9,6 +9,13 @@ import no.ntnu.idatg2001.unit.units.RangedUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class to test the core functionality
+ * of the unit classes. The infantry, ranged,
+ * cavalry and the commander unit class are tested.
+ * @author Andreas Follevaag Malde
+ * @version 1.0 - SNAPSHOT (22.02.2022)
+ */
 class UnitTest {
 
   Unit infantry;
@@ -16,6 +23,11 @@ class UnitTest {
   Unit cavalry;
   Unit commander;
 
+  /**
+   * Initialization method to initialize an
+   * infantry, a ranged, a cavalry and a commander
+   * unit before each test method is called.
+   */
   @BeforeEach
   void init(){
     infantry = new InfantryUnit("Infantry",100);
@@ -24,6 +36,12 @@ class UnitTest {
     commander = new CommanderUnit("Infantry",200);
   }
 
+  /**
+   * Constructor testing method. This method will
+   * test to make sure all the constructors work as
+   * intended. They are also tested to handle wrong
+   * input.
+   */
   @Test
   void constructorTest(){
 
@@ -69,6 +87,12 @@ class UnitTest {
 
   }
 
+  /**
+   * The attack test method makes sure the attack method
+   * of the unit classes work as intended.
+   * It also makes sure a units' health will never
+   * be less than 0.
+   */
   @Test
   void attack(){
 
@@ -96,6 +120,10 @@ class UnitTest {
 
   }
 
+  /**
+   * Test method for the attackBonus. Testing
+   * if the method works as intended.
+   */
   @Test
   void getAttackBonus(){
 
@@ -119,6 +147,10 @@ class UnitTest {
 
   }
 
+  /**
+   * Test method for the resistBonus. Testing
+   * if the method works as intended.
+   */
   @Test
   void getResistBonus(){
 
