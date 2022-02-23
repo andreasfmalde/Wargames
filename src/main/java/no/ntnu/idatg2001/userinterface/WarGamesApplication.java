@@ -10,18 +10,34 @@ import no.ntnu.idatg2001.unit.units.CommanderUnit;
 import no.ntnu.idatg2001.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.unit.units.RangedUnit;
 
+/**
+ * Class that represents a user interface
+ * for the WarGames application. Handling the
+ * communication between the user and the
+ * simulation.
+ * @author Andreas Follevaag Malde
+ * @version 1.0 - SNAPSHOT (23.02.22)
+ */
 public class WarGamesApplication {
 
   private final InputValidator userInput;
   private Army armyOne;
   private Army armyTwo;
 
+  /**
+   * Constructor to start the WarGames
+   * applications' main run method
+   */
   public WarGamesApplication(){
     userInput = new InputValidator();
     run();
   }
 
 
+  /**
+   * Display menu choices and take input from the user
+   * @return users' menu choice
+   */
   private int getMenuChoice(){
     System.out.println("Choose an action below:");
     System.out.println("-----------------------");
@@ -32,6 +48,10 @@ public class WarGamesApplication {
     return userInput.getValidInt(1,3);
   }
 
+  /**
+   * Get army names from the user and autofill
+   * the armies with units. Then run the simulation.
+   */
   private void autoFillOption(){
     System.out.println("===== Autofill and run =====");
     System.out.print("Name of first army: ");
@@ -49,21 +69,36 @@ public class WarGamesApplication {
 
   }
 
+  /**
+   * Run the battle simulation and display the
+   * winning army.
+   */
   private void simulate(){
-    Army winner = new Battle(armyOne,armyTwo).simulate();
-    System.out.println("The winner is "+winner);
+    try{
+      Army winner = new Battle(armyOne,armyTwo).simulate();
+      System.out.println("The winner is "+winner);
+    }catch (NullPointerException | IllegalArgumentException e){
+      System.err.println("Simulation failed... [CAUSE]: "+e.getMessage());
+    }
+
   }
 
+  /**
+   * Initialize and autofill armies with the same amount of units
+   * @param firstArmyName Name of the first army
+   * @param secondArmyName Name of the second army
+   */
   private void makeArmies(String firstArmyName, String secondArmyName){
     this.armyOne = new Army(firstArmyName);
     this.armyTwo = new Army(secondArmyName);
 
+    // Unit types in army one
     Unit footMan = new InfantryUnit("Footman",100);
     Unit knight = new CavalryUnit("Knight",100);
     Unit archer = new RangedUnit("Archer",100);
     Unit mountainKing = new CommanderUnit("Mountain King",180);
 
-
+    // Unit types in army two
     Unit grunt = new InfantryUnit("Grunt",100);
     Unit raider = new CavalryUnit("Raider",100);
     Unit spearMan = new RangedUnit("Spearman",100);
@@ -92,7 +127,10 @@ public class WarGamesApplication {
 
   }
 
-
+  /**
+   * Initialize custom armies manually filled by user
+   * and run battle simulation
+   */
   private void manualFill(){
     System.out.println("===== Manual fill and run =====");
     System.out.print("Name of the first army: ");
@@ -111,6 +149,16 @@ public class WarGamesApplication {
     }
   }
 
+  /**
+   * Initialize a specific type of unit
+   * @param name Name of the unit
+   * @param health Health of the unit
+   * @param attack Attack power of the unit
+   * @param resistance Resistance of the unit
+   * @param i Variable 'i' describes which type of unit to return
+   * @return a specific initialized type of unit
+   * @throws IllegalArgumentException If parameters are invalid objects will not be returned
+   */
   private Unit unit(String name,int health,int attack,int resistance, int i)throws IllegalArgumentException{
     switch (i){
       case 1:
@@ -124,6 +172,11 @@ public class WarGamesApplication {
     }
   }
 
+  /**
+   * Generating armies with custom types and amount of units
+   * @param armyName Name of the army
+   * @param armyNr Determine which army to generate
+   */
   private void generateArmy(String armyName,int armyNr){
     List<Unit> unitList = new ArrayList<>();
     String[] units = {"Infantry","Ranged","Cavalry","Commander"};
@@ -140,7 +193,6 @@ public class WarGamesApplication {
       int resist = userInput.getValidInt(0,50);
       System.out.println();
 
-
       try{
         for(int j = 0;i<amount;j++){
           unitList.add(unit(name,health,attack,resist,i));
@@ -150,8 +202,6 @@ public class WarGamesApplication {
       }
 
     }
-
-
     if(armyNr == 1){
       this.armyOne = new Army(armyName,unitList);
 
@@ -162,6 +212,11 @@ public class WarGamesApplication {
   }
 
 
+  /**
+   * Main running loop to keep the user in the
+   * application. Redirects the user based on
+   * the menu choices made.
+   */
   private void run(){
     boolean running = true;
     System.out.println("|============================|");

@@ -2,18 +2,36 @@ package no.ntnu.idatg2001.userinterface;
 
 import java.util.Scanner;
 
+/**
+ * Class to handle user input. Both retrieving input
+ * from a user, and working as an input validator.
+ * @author Andreas Follevaag Malde
+ * @version 1.0 - SNAPSHOT (23.02.2022)
+ *
+ */
 public class InputValidator {
   private Scanner scanner;
 
-
+  /**
+   * Constructor to create and initialize an InputValidator object
+   */
   public InputValidator(){
     scanner = new Scanner(System.in);
   }
 
+  /**
+   * @return string input from the user
+   */
   public String getStringInput(){
     return scanner.nextLine();
   }
 
+
+  /**
+   * Get valid int from the user. Will loop and prompt the user
+   * to insert a valid int until one is given.
+   * @return int from the user
+   */
   public int getValidInt(){
     boolean valid = false;
     int choice = 0;
@@ -30,6 +48,13 @@ public class InputValidator {
     return choice;
   }
 
+  /**
+   * Get a valid int from the user. Will also check to make sure the value is
+   * between the min and max value specified as parameters.
+   * @param min Minimum value of the scope
+   * @param max Maximum value of the scope
+   * @return int between min and max value
+   */
   public int getValidInt(int min, int max){
     boolean valid = false;
     int choice = 0;

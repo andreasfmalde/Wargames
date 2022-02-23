@@ -5,7 +5,7 @@ package no.ntnu.idatg2001.unit;
  * Provides basic functionality of a unit.
  *
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (08.02.2022)
+ * @version 1.0 - SNAPSHOT (23.02.2022)
  */
 public abstract class Unit {
 
@@ -95,6 +95,9 @@ public abstract class Unit {
    * @param opponent the unit that is attacked
    */
   public void attack(Unit opponent){
+    if(opponent == null){
+      throw new NullPointerException("Opponent unit object can not be null");
+    }
     int newHealth = opponent.getHealth() - (this.attack + this.getAttackBonus())+
         (opponent.getArmor() + opponent.getResistBonus());
     opponent.setHealth(Math.max(newHealth, 0));
