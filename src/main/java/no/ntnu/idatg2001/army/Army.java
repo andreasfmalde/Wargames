@@ -69,14 +69,25 @@ public class Army {
     return name;
   }
 
+  /**
+   * @return A list of all infantry units in the unit list
+   */
   public List<Unit> getInfantryUnits(){
-    return units.stream().filter(unit -> unit instanceof InfantryUnit).collect(Collectors.toList());
+    return units.stream().filter(unit -> (unit instanceof InfantryUnit))
+        .collect(Collectors.toList());
   }
 
+  /**
+   * @return A list of all ranged units in the unit list
+   */
   public List<Unit> getRangedUnits(){
-    return units.stream().filter(unit -> unit instanceof RangedUnit).collect(Collectors.toList());
+    return units.stream().filter(unit -> (unit instanceof RangedUnit))
+        .collect(Collectors.toList());
   }
 
+  /**
+   * @return A list of all cavalry units in the unit list
+   */
   public List<Unit> getCavalryUnits(){
     return units.stream()
         .filter(unit -> unit instanceof CavalryUnit)
@@ -84,8 +95,12 @@ public class Army {
         .collect(Collectors.toList());
   }
 
+  /**
+   * @return A list of all commander units in the unit list
+   */
   public List<Unit> getCommanderUnits(){
-    return units.stream().filter(unit -> unit instanceof CommanderUnit).collect(Collectors.toList());
+    return units.stream().filter(unit -> (unit instanceof CommanderUnit))
+        .collect(Collectors.toList());
 
   }
 
