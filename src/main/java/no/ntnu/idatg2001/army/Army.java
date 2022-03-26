@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 import no.ntnu.idatg2001.unit.Unit;
+import no.ntnu.idatg2001.unit.units.CavalryUnit;
+import no.ntnu.idatg2001.unit.units.CommanderUnit;
+import no.ntnu.idatg2001.unit.units.InfantryUnit;
+import no.ntnu.idatg2001.unit.units.RangedUnit;
 
 /**
  * Class that represents an army containing different units.
@@ -63,6 +68,28 @@ public class Army {
   public String getName(){
     return name;
   }
+
+  public List<Unit> getInfantryUnits(){
+    return units.stream().filter(unit -> unit instanceof InfantryUnit).collect(Collectors.toList());
+  }
+
+  public List<Unit> getRangedUnits(){
+    return units.stream().filter(unit -> unit instanceof RangedUnit).collect(Collectors.toList());
+  }
+
+  public List<Unit> getCavalryUnits(){
+    return units.stream()
+        .filter(unit -> unit instanceof CavalryUnit)
+        .filter(unit -> !(unit instanceof CommanderUnit))
+        .collect(Collectors.toList());
+  }
+
+  public List<Unit> getCommanderUnits(){
+    return units.stream().filter(unit -> unit instanceof CommanderUnit).collect(Collectors.toList());
+
+  }
+
+
 
   /**
    * Add a new unit to the army.
