@@ -11,6 +11,7 @@ import no.ntnu.idatg2001.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.unit.units.RangedUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.ranges.Range;
 
 /**
  * Test class for the army class to make sure
@@ -179,6 +180,40 @@ class ArmyTest {
     // both army and sameArmy contains the same units and have the same names.
     // therefore, they are equal
     assertEquals(army,sameArmy);
+
+  }
+
+  /**
+   * Testing the unit instance getter methods to
+   * make sure they return the right unit
+   * instances.
+   */
+  @Test
+  void getUnitInstances(){
+    norwegianArmy.addAll(unitList);
+    // Expecting there to be 1 instance of each unit class
+    assertEquals(1,norwegianArmy.getInfantryUnits().size());
+    assertEquals("Infantry",norwegianArmy.getInfantryUnits().get(0).getName());
+    assertEquals(1,norwegianArmy.getRangedUnits().size());
+    assertEquals("Ranged",norwegianArmy.getRangedUnits().get(0).getName());
+    assertEquals(1,norwegianArmy.getCavalryUnits().size());
+    assertEquals("Cavalry",norwegianArmy.getCavalryUnits().get(0).getName());
+    assertEquals(1,norwegianArmy.getCommanderUnits().size());
+    assertEquals("Commander",norwegianArmy.getCommanderUnits().get(0).getName());
+    // Adding a new class of each unit instance to the army
+    norwegianArmy.add(new InfantryUnit("Infantry2",100));
+    norwegianArmy.add(new RangedUnit("Ranged2",100));
+    norwegianArmy.add(new CavalryUnit("Cavalry2",100));
+    norwegianArmy.add(new CommanderUnit("Commander2",100));
+    // Expecting there to be 2 instances of each unit class
+    assertEquals(2,norwegianArmy.getInfantryUnits().size());
+    assertEquals(2,norwegianArmy.getRangedUnits().size());
+    assertEquals(2,norwegianArmy.getCavalryUnits().size());
+    assertEquals(2,norwegianArmy.getCommanderUnits().size());
+    assertEquals("Infantry2",norwegianArmy.getInfantryUnits().get(1).getName());
+    assertEquals("Ranged2",norwegianArmy.getRangedUnits().get(1).getName());
+    assertEquals("Cavalry2",norwegianArmy.getCavalryUnits().get(1).getName());
+    assertEquals("Commander2",norwegianArmy.getCommanderUnits().get(1).getName());
 
   }
 
