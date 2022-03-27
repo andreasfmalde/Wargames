@@ -1,0 +1,5 @@
+Orcish Horde
+InfantryUnit,Infantry,100
+RangedUnit,Ranged,105
+CavalryUnit,Cavalry,110
+CommanderUnit,Commander,120
