@@ -1,5 +1,7 @@
 package no.ntnu.idatg2001.unit;
 
+import java.util.Objects;
+
 /**
  * An abstract class that represents a unit.
  * Provides basic functionality of a unit.
@@ -130,4 +132,33 @@ public abstract class Unit {
    */
   public abstract int getResistBonus();
 
+
+  /**
+   * Equals method that will compare unit objects
+   * based on their fields. Same field values and underclasses
+   * result in same objects.
+   * @param o Object to compare against
+   * @return true / false
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Unit unit = (Unit) o;
+    return health == unit.health && attack == unit.attack && armor == unit.armor &&
+        Objects.equals(name, unit.name);
+  }
+
+  /**
+   * @return hashcode based on the unit name, health,
+   * attack value and armour value
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, health, attack, armor);
+  }
 }
