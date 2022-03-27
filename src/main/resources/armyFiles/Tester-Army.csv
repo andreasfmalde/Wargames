@@ -1,0 +1,5 @@
+Tester Army
+InfantryUnit,InfantryUnit,100
+RangedUnit,RangedUnit,110
+CavalryUnit,CavalryUnit,120
+CommanderUnit,CommanderUnit,130
