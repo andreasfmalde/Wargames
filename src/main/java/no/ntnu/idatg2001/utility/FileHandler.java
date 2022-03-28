@@ -73,7 +73,7 @@ public class FileHandler {
         if(unitLine.length != 3)
           throw new IOException("There are not three unit values on the unit line");
         // Add unit to the army based on the unit values
-        army.add(FileHandler.getUnit(unitLine[0],unitLine[1],unitLine[2]));
+        army.add(FileHandler.getUnit(unitLine[0].strip(),unitLine[1].strip(),unitLine[2].strip()));
       }
       // Return the army
       return army;
