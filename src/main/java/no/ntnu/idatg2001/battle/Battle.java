@@ -38,22 +38,28 @@ public class Battle {
    * @return the winner of the battle (army with units left)
    */
   public Army simulate(){
+    // Checking to make sure both armies have units left
     while(armyOne.hasUnits() && armyTwo.hasUnits()){
+      // Randomly picking which army will attack the other
       if(random.nextInt(2) == 0){
         Unit defendingUnit = armyTwo.getRandom();
+        // A random unit from army one attack a random unit from army two
         armyOne.getRandom().attack(defendingUnit);
+        // If the unit getting attack has no more health, it will be removed
         if (defendingUnit.getHealth() == 0){
           armyTwo.remove(defendingUnit);
         }
       }else{
         Unit defendingUnit = armyOne.getRandom();
+        // A random unit from army two attacks a random unit from army one
         armyTwo.getRandom().attack(defendingUnit);
+        // If the unit getting attack has no more health, it will be removed
         if (defendingUnit.getHealth() == 0){
           armyOne.remove(defendingUnit);
         }
       }
     }
-
+    // Single line if/else statement. Return the army that still has units left
     return armyOne.hasUnits() ? armyOne : armyTwo;
   }
 
