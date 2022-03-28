@@ -11,10 +11,19 @@ import no.ntnu.idatg2001.unit.units.RangedUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * File-handler test class to test for basic
+ * file handling functionality
+ * @author Andreas Follevaag Malde
+ * @version 1.0 - SNAPSHOT
+ */
 class FileHandlerTest {
 
   private Army army;
 
+  /**
+   * Initialize an army object to use before each test.
+   */
   @BeforeEach
   void init(){
     army = new Army("Tester Army");
@@ -25,6 +34,11 @@ class FileHandlerTest {
   }
 
 
+  /**
+   * Method to test reading and writing to files
+   * under normal operations. When all values are
+   * how they are supposed to be. No exception handling.
+   */
   @Test
   void normalOperationReadingAndWritingToFileTest(){
     // Write army class to file
@@ -46,6 +60,31 @@ class FileHandlerTest {
     catch (IOException e){
       // Any problems reading a file will cause a failed test
       fail();
+    }
+
+  }
+
+  /**
+   * Testing to make sure the file handler class handles
+   * problems in files in a proper way
+   */
+  @Test
+  void testHandlingProblemsInFiles(){
+    // Testing to make sure an army object will not be created if there
+    // are no file with the specified filename,
+    try{
+      Army failArmy = FileHandler.getArmyFromFile("NotAFilename");
+      fail();
+    }catch (IOException e){
+      assertTrue(true);
+    }
+
+    // Throwing exception if the file format is not how it should be
+    try{
+      Army failArmy = FileHandler.getArmyFromFile("fail");
+      fail();
+    }catch (IOException e){
+      assertEquals("There are not three unit values on the unit line",e.getMessage());
     }
 
   }
