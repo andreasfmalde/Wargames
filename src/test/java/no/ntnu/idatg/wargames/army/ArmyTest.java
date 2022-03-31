@@ -1,17 +1,17 @@
-package no.ntnu.idatg2001.army;
+package no.ntnu.idatg.wargames.army;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import no.ntnu.idatg2001.unit.Unit;
-import no.ntnu.idatg2001.unit.units.CavalryUnit;
-import no.ntnu.idatg2001.unit.units.CommanderUnit;
-import no.ntnu.idatg2001.unit.units.InfantryUnit;
-import no.ntnu.idatg2001.unit.units.RangedUnit;
+import no.ntnu.idatg.wargames.unit.Unit;
+import no.ntnu.idatg.wargames.unit.units.InfantryUnit;
+import no.ntnu.idatg.wargames.unit.units.CavalryUnit;
+import no.ntnu.idatg.wargames.unit.units.CommanderUnit;
+import no.ntnu.idatg.wargames.unit.units.RangedUnit;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.w3c.dom.ranges.Range;
 
 /**
  * Test class for the army class to make sure
@@ -193,13 +193,13 @@ class ArmyTest {
     norwegianArmy.addAll(unitList);
     // Expecting there to be 1 instance of each unit class
     assertEquals(1,norwegianArmy.getInfantryUnits().size());
-    assertEquals("Infantry",norwegianArmy.getInfantryUnits().get(0).getName());
+    Assertions.assertEquals("Infantry",norwegianArmy.getInfantryUnits().get(0).getName());
     assertEquals(1,norwegianArmy.getRangedUnits().size());
-    assertEquals("Ranged",norwegianArmy.getRangedUnits().get(0).getName());
+    Assertions.assertEquals("Ranged",norwegianArmy.getRangedUnits().get(0).getName());
     assertEquals(1,norwegianArmy.getCavalryUnits().size());
-    assertEquals("Cavalry",norwegianArmy.getCavalryUnits().get(0).getName());
+    Assertions.assertEquals("Cavalry",norwegianArmy.getCavalryUnits().get(0).getName());
     assertEquals(1,norwegianArmy.getCommanderUnits().size());
-    assertEquals("Commander",norwegianArmy.getCommanderUnits().get(0).getName());
+    Assertions.assertEquals("Commander",norwegianArmy.getCommanderUnits().get(0).getName());
     // Adding a new class of each unit instance to the army
     norwegianArmy.add(new InfantryUnit("Infantry2",100));
     norwegianArmy.add(new RangedUnit("Ranged2",100));
@@ -210,10 +210,10 @@ class ArmyTest {
     assertEquals(2,norwegianArmy.getRangedUnits().size());
     assertEquals(2,norwegianArmy.getCavalryUnits().size());
     assertEquals(2,norwegianArmy.getCommanderUnits().size());
-    assertEquals("Infantry2",norwegianArmy.getInfantryUnits().get(1).getName());
-    assertEquals("Ranged2",norwegianArmy.getRangedUnits().get(1).getName());
-    assertEquals("Cavalry2",norwegianArmy.getCavalryUnits().get(1).getName());
-    assertEquals("Commander2",norwegianArmy.getCommanderUnits().get(1).getName());
+    Assertions.assertEquals("Infantry2",norwegianArmy.getInfantryUnits().get(1).getName());
+    Assertions.assertEquals("Ranged2",norwegianArmy.getRangedUnits().get(1).getName());
+    Assertions.assertEquals("Cavalry2",norwegianArmy.getCavalryUnits().get(1).getName());
+    Assertions.assertEquals("Commander2",norwegianArmy.getCommanderUnits().get(1).getName());
 
   }
 

@@ -1,6 +1,6 @@
-package no.ntnu.idatg2001.unit.units;
+package no.ntnu.idatg.wargames.unit.units;
 
-import no.ntnu.idatg2001.unit.Unit;
+import no.ntnu.idatg.wargames.unit.Unit;
 
 /**
  * A class that describes an infantry unit.

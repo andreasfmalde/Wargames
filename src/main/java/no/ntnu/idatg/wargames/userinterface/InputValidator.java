@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001.userinterface;
+package no.ntnu.idatg.wargames.userinterface;
 
 import java.util.Scanner;
 

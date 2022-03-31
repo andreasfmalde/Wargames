@@ -1,14 +1,14 @@
-package no.ntnu.idatg2001.battle;
+package no.ntnu.idatg.wargames.battle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-import no.ntnu.idatg2001.army.Army;
-import no.ntnu.idatg2001.unit.Unit;
-import no.ntnu.idatg2001.unit.units.CavalryUnit;
-import no.ntnu.idatg2001.unit.units.CommanderUnit;
-import no.ntnu.idatg2001.unit.units.InfantryUnit;
-import no.ntnu.idatg2001.unit.units.RangedUnit;
+import no.ntnu.idatg.wargames.army.Army;
+import no.ntnu.idatg.wargames.unit.Unit;
+import no.ntnu.idatg.wargames.unit.units.InfantryUnit;
+import no.ntnu.idatg.wargames.unit.units.CavalryUnit;
+import no.ntnu.idatg.wargames.unit.units.CommanderUnit;
+import no.ntnu.idatg.wargames.unit.units.RangedUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
