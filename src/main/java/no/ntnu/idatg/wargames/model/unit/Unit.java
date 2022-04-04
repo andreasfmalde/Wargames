@@ -1,4 +1,4 @@
-package no.ntnu.idatg.wargames.unit;
+package no.ntnu.idatg.wargames.model.unit;
 
 import java.util.Objects;
 

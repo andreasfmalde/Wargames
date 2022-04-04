@@ -1,6 +1,6 @@
-package no.ntnu.idatg.wargames.unit.units;
+package no.ntnu.idatg.wargames.model.unit.units;
 
-import no.ntnu.idatg.wargames.unit.Unit;
+import no.ntnu.idatg.wargames.model.unit.Unit;
 
 /**
  * A class describing a cavalry unit.

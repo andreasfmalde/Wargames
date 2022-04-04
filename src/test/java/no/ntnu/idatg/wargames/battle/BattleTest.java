@@ -3,12 +3,13 @@ package no.ntnu.idatg.wargames.battle;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-import no.ntnu.idatg.wargames.army.Army;
-import no.ntnu.idatg.wargames.unit.Unit;
-import no.ntnu.idatg.wargames.unit.units.InfantryUnit;
-import no.ntnu.idatg.wargames.unit.units.CavalryUnit;
-import no.ntnu.idatg.wargames.unit.units.CommanderUnit;
-import no.ntnu.idatg.wargames.unit.units.RangedUnit;
+import no.ntnu.idatg.wargames.model.army.Army;
+import no.ntnu.idatg.wargames.model.battle.Battle;
+import no.ntnu.idatg.wargames.model.unit.Unit;
+import no.ntnu.idatg.wargames.model.unit.units.InfantryUnit;
+import no.ntnu.idatg.wargames.model.unit.units.CavalryUnit;
+import no.ntnu.idatg.wargames.model.unit.units.CommanderUnit;
+import no.ntnu.idatg.wargames.model.unit.units.RangedUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

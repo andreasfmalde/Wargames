@@ -1,4 +1,4 @@
-package no.ntnu.idatg.wargames.unit.units;
+package no.ntnu.idatg.wargames.model.unit.units;
 
 /**
  * The commander unit class is a more capable

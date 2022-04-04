@@ -1,15 +1,15 @@
-package no.ntnu.idatg.wargames.army;
+package no.ntnu.idatg.wargames.model.army;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
-import no.ntnu.idatg.wargames.unit.units.InfantryUnit;
-import no.ntnu.idatg.wargames.unit.Unit;
-import no.ntnu.idatg.wargames.unit.units.CavalryUnit;
-import no.ntnu.idatg.wargames.unit.units.CommanderUnit;
-import no.ntnu.idatg.wargames.unit.units.RangedUnit;
+import no.ntnu.idatg.wargames.model.unit.units.InfantryUnit;
+import no.ntnu.idatg.wargames.model.unit.Unit;
+import no.ntnu.idatg.wargames.model.unit.units.CavalryUnit;
+import no.ntnu.idatg.wargames.model.unit.units.CommanderUnit;
+import no.ntnu.idatg.wargames.model.unit.units.RangedUnit;
 
 /**
  * Class that represents an army containing different units.
