@@ -92,19 +92,38 @@ class ArmyTest {
     // norwegian army are not empty anymore
     assertTrue(norwegianArmy.hasUnits());
     // operation to add infantry unit to the army is expected to be successful
-    assertTrue(norwegianArmy.add(new InfantryUnit("Infantry",150)));
+    try{
+      norwegianArmy.add(new InfantryUnit("Infantry",150));
+    }catch (IllegalArgumentException e){
+      fail();
+    }
     // there are 2 units in the army
     assertEquals(2,norwegianArmy.getAllUnits().size());
 
     // operation to add null to the army should not be successful
-    assertFalse(norwegianArmy.add(null));
+    try{
+      norwegianArmy.add(null);
+      fail();
+    }catch (IllegalArgumentException e){
+      assertEquals("Unit object can not be null",e.getMessage());
+    }
+    // Adding units to swedish army
+    try{
+      swedishArmy.addAll(unitList);
+    }catch (IllegalArgumentException e){
+      fail();
+    }
 
-    assertTrue(swedishArmy.addAll(unitList));
     // swedish army has 4 units
     assertEquals(4,swedishArmy.getAllUnits().size());
 
-    // operation to add null as a list to the army should not be successful
-    assertFalse(swedishArmy.addAll(null));
+    // operation to add null as a list to the army should not be
+    try{
+      swedishArmy.addAll(null);
+      fail();
+    }catch (IllegalArgumentException e){
+      assertEquals("Unit list can not be null",e.getMessage());
+    }
 
   }
 
@@ -121,17 +140,31 @@ class ArmyTest {
     // norwegian army has 4 units
     assertEquals(4,norwegianArmy.getAllUnits().size());
     // operation to remove a unit already in the army, from the army is expected to be successful
-    assertTrue(norwegianArmy.remove(norwegianArmy.getAllUnits().get(1)));
+    try{
+      norwegianArmy.remove(norwegianArmy.getAllUnits().get(1));
+    }catch (Exception e){
+      fail();
+    }
     // norwegian army now has 3 units
     assertEquals(3,norwegianArmy.getAllUnits().size());
 
     // should not be able to remove a unit not in the list
-    assertFalse(norwegianArmy.remove(new CommanderUnit("not a unit in the list",10)));
+    try{
+      norwegianArmy.remove(new CommanderUnit("not a unit in the list",10));
+      fail();
+    }catch (IllegalArgumentException e ){
+      assertEquals("The unit is not in the list",e.getMessage());
+    }
 
     assertEquals(3,norwegianArmy.getAllUnits().size());
 
     // operation to remove a "null" unit is not successful
-    assertFalse(norwegianArmy.remove(null));
+    try {
+      norwegianArmy.remove(null);
+      fail();
+    }catch (IllegalArgumentException e){
+      assertEquals("Unit object can not be null",e.getMessage());
+    }
 
     assertEquals(3,norwegianArmy.getAllUnits().size());
 

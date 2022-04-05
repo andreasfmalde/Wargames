@@ -109,41 +109,37 @@ public class Army {
   /**
    * Add a new unit to the army.
    * @param unit Unit to add to the army
-   * @return true if the operation was successful
    */
-  public boolean add(Unit unit){
+  public void add(Unit unit){
     if(unit == null){
-      return false;
+      throw new IllegalArgumentException("Unit object can not be null");
     }
     units.add(unit);
-    return true;
   }
 
   /**
    * Add several units to the army at once
    * @param units List of units to add to the army
-   * @return true if the operation was successful
    */
-  public boolean addAll(List<Unit> units){
-    if(units == null || units.isEmpty()){
-      return false;
+  public void addAll(List<Unit> units){
+    if(units == null ){
+      throw new IllegalArgumentException("Unit list can not be null");
     }
     this.units.addAll(units);
-    return true;
   }
 
   /**
    * Remove a unit from the army. I.e. if the unit
    * has lost all its health
    * @param unit Unit to remove from the army
-   * @return true if the operation was successful
    */
-  public boolean remove(Unit unit){
-    if(unit != null && units.contains(unit)){
-      units.remove(unit);
-      return true;
+  public void remove(Unit unit){
+    if(unit == null){
+      throw new IllegalArgumentException("Unit object can not be null");
+    }else if(!this.units.contains(unit)){
+      throw new IllegalArgumentException("The unit is not in the list");
     }
-    return false;
+    this.units.remove(unit);
   }
 
   /**
