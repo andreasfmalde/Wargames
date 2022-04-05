@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import no.ntnu.idatg2001.wargames.model.army.Army;
+import no.ntnu.idatg2001.wargames.model.unit.UnitFactory;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 import no.ntnu.idatg2001.wargames.model.unit.units.CavalryUnit;
@@ -73,7 +74,7 @@ public class FileHandler {
         if(unitLine.length != 3)
           throw new IOException("There are not three unit values on the unit line");
         // Add unit to the army based on the unit values
-        army.add(FileHandler.getUnit(unitLine[0].strip(),unitLine[1].strip(),unitLine[2].strip()));
+        army.add(UnitFactory.createUnit(unitLine[0].strip(),unitLine[1].strip(),Integer.parseInt(unitLine[2].strip())));
       }
       // Return the army
       return army;
@@ -83,32 +84,5 @@ public class FileHandler {
       throw new IOException(e.getMessage());
     }
   }
-
-
-  /**
-   * Create a unit based the parameters.
-   * @param classType String value to specify unit type
-   * @param unitName Name of the unit
-   * @param health Health of the unit
-   * @return Unit of the specified type
-   */
-  private static Unit getUnit(String classType, String unitName, String health){
-    int unitHealth = Integer.parseInt(health);
-    // Return unit type based on the class type parameter
-    switch (classType){
-      case "InfantryUnit":
-        return new InfantryUnit(unitName,unitHealth);
-      case "RangedUnit":
-        return  new RangedUnit(unitName,unitHealth);
-      case "CavalryUnit":
-        return new CavalryUnit(unitName,unitHealth);
-      case "CommanderUnit":
-        return new CommanderUnit(unitName,unitHealth);
-      default:
-        return null;
-    }
-  }
-
-
 
 }
