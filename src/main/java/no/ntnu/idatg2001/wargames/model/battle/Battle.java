@@ -8,13 +8,14 @@ import no.ntnu.idatg2001.wargames.model.unit.Unit;
  * Class to represent a battle simulation
  * between two armies.
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (23.02.22)
+ * @version 1.0 - SNAPSHOT
  */
 public class Battle {
 
   private final Army armyOne;
   private final Army armyTwo;
   private final Random random;
+  private final Terrain terrain;
 
   /**
    * Constructor to initialize a new battle class
@@ -22,12 +23,16 @@ public class Battle {
    * @param armyOne First army
    * @param armyTwo Second army
    */
-  public Battle(Army armyOne, Army armyTwo){
+  public Battle(Army armyOne, Army armyTwo,Terrain terrain){
     if (armyOne == null || armyTwo == null){
       throw new IllegalArgumentException("Armies can not be null");
     }
+    if(terrain == null){
+      throw new IllegalArgumentException("Terrain can not be null.");
+    }
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
+    this.terrain = terrain;
     random = new Random();
   }
 
@@ -38,6 +43,9 @@ public class Battle {
    * @return the winner of the battle (army with units left)
    */
   public Army simulate(){
+    // Set the terrain of the battle in both armies.
+    armyOne.setTerrain(this.terrain);
+    armyTwo.setTerrain(this.terrain);
     // Checking to make sure both armies have units left
     while(armyOne.hasUnits() && armyTwo.hasUnits()){
       // Randomly picking which army will attack the other

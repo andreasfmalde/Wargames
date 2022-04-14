@@ -1,6 +1,7 @@
 package no.ntnu.idatg2001.wargames.model.unit;
 
 import java.util.Objects;
+import no.ntnu.idatg2001.wargames.model.battle.Terrain;
 
 /**
  * An abstract class that represents a unit.
@@ -15,6 +16,7 @@ public abstract class Unit {
   private int health;
   private int attack;
   private int armor;
+  private Terrain terrain;
 
   /**
    * Constructor of the unit class. Used to initialize a new
@@ -39,6 +41,7 @@ public abstract class Unit {
     this.setHealth(health);
     this.attack = attack;
     this.armor = armor;
+    this.terrain = null;
   }
 
   // ----- Getter methods -----
@@ -75,6 +78,14 @@ public abstract class Unit {
     return armor;
   }
 
+  /**
+   *
+   * @return the terrain where unit fight
+   */
+  protected Terrain getTerrain(){
+    return terrain;
+  }
+
   // ----- Setter method -----
 
   /**
@@ -87,6 +98,18 @@ public abstract class Unit {
       throw new IllegalArgumentException("Health can not be less than 0");
     }
     this.health = health;
+  }
+
+  /**
+   * Set the terrain. This will affect the attack and defence
+   * bonus of each unit.
+   * @param terrain Terrain enum
+   */
+  public void setTerrain(Terrain terrain){
+    if (terrain == null){
+      throw new IllegalArgumentException("Terrain can not be null");
+    }
+    this.terrain = terrain;
   }
 
   // ----- Class methods -----
@@ -131,6 +154,14 @@ public abstract class Unit {
    * @return Resistance bonus.
    */
   public abstract int getResistBonus();
+
+  /**
+   * Different units have different attack and
+   * defence bonuses based on the terrain.
+   * @return Impact on the attack and defence bonus
+   * from the terrain
+   */
+  public abstract int[] getTerrainImpact();
 
 
   /**

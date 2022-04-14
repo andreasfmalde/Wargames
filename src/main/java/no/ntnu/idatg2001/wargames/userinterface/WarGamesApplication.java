@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.battle.Battle;
+import no.ntnu.idatg2001.wargames.model.battle.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.units.CavalryUnit;
@@ -75,7 +76,7 @@ public class WarGamesApplication {
    */
   private void simulate(){
     try{
-      Army winner = new Battle(armyOne,armyTwo).simulate();
+      Army winner = new Battle(armyOne,armyTwo, Terrain.HILL).simulate();
       System.out.println("The winner is "+winner);
     }catch (NullPointerException | IllegalArgumentException e){
       System.err.println("Simulation failed... [CAUSE]: "+e.getMessage());

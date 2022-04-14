@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
+import no.ntnu.idatg2001.wargames.model.battle.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 import no.ntnu.idatg2001.wargames.model.unit.units.CavalryUnit;
@@ -59,6 +60,13 @@ public class Army {
       throw new IllegalArgumentException("Name can not be empty or blank");
     }
     this.name = name;
+  }
+
+  public void setTerrain(Terrain terrain){
+    for(Unit unit : units){
+      unit.setTerrain(terrain);
+    }
+
   }
 
   /**

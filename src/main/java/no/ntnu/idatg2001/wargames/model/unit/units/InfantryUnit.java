@@ -1,5 +1,6 @@
 package no.ntnu.idatg2001.wargames.model.unit.units;
 
+import no.ntnu.idatg2001.wargames.model.battle.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 
 /**
@@ -44,7 +45,7 @@ public class InfantryUnit extends Unit {
    */
   @Override
   public int getAttackBonus() {
-    return 2;
+    return 2 + getTerrainImpact()[0];
   }
 
   /**
@@ -54,6 +55,20 @@ public class InfantryUnit extends Unit {
    */
   @Override
   public int getResistBonus() {
-    return 1;
+    return 1 + getTerrainImpact()[1];
+  }
+
+  @Override
+  public int[] getTerrainImpact(){
+    if(this.getTerrain() == null){
+      return new int[]{0,0};
+    }
+    switch (this.getTerrain()){
+      case FOREST:
+        return new int[]{2,2};
+      default:
+        return new int[]{0,0};
+    }
+
   }
 }

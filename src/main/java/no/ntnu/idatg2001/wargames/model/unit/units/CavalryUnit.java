@@ -52,9 +52,9 @@ public class CavalryUnit extends Unit {
   public int getAttackBonus() {
     if(!firstAttack){
       firstAttack = true;
-      return 6;
+      return 6 + getTerrainImpact()[0];
     }
-    return 2;
+    return 2 + getTerrainImpact()[0];
   }
 
   /**
@@ -64,6 +64,21 @@ public class CavalryUnit extends Unit {
    */
   @Override
   public int getResistBonus() {
-    return 1;
+    return 1 + getTerrainImpact()[1];
+  }
+
+  @Override
+  public int[] getTerrainImpact(){
+    if(this.getTerrain() == null){
+      return new int[]{0,0};
+    }
+    switch (this.getTerrain()){
+      case PLAINS:
+        return new int[]{2,0};
+      case FOREST:
+        return new int[]{0,-1};
+      default:
+        return new int[]{0,0};
+    }
   }
 }

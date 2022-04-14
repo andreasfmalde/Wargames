@@ -2,6 +2,7 @@ package no.ntnu.idatg2001.wargames.model.unit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import no.ntnu.idatg2001.wargames.model.battle.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.units.CavalryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.units.CommanderUnit;
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * of the unit classes. The infantry, ranged,
  * cavalry and the commander unit class are tested.
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (22.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 class UnitTest {
 
@@ -34,6 +35,11 @@ class UnitTest {
     ranged = new RangedUnit("Ranged",150);
     cavalry = new CavalryUnit("Cavalry",180);
     commander = new CommanderUnit("Infantry",200);
+    // All units are set to Hill terrain
+    infantry.setTerrain(Terrain.HILL);
+    ranged.setTerrain(Terrain.HILL);
+    cavalry.setTerrain(Terrain.HILL);
+    commander.setTerrain(Terrain.HILL);
   }
 
   /**
@@ -101,8 +107,8 @@ class UnitTest {
     assertEquals(147,ranged.getHealth());
 
     ranged.attack(cavalry);
-    // health = 180 - (15 + 3) + (12 + 1) = 180 - 18 + 13 = 175
-    assertEquals(175,cavalry.getHealth());
+    // health = 180 - (15 + 2(HILL terrain)+3) + (12 + 1) = 180 - 18 + 13 = 173
+    assertEquals(173,cavalry.getHealth());
 
     cavalry.attack(commander);
     // health = 200 - (20 + 6) + (15 + 1) = 200 - 26 + 16 = 190
@@ -132,8 +138,8 @@ class UnitTest {
     assertEquals(2,infantry.getAttackBonus());
 
     // Ranged
-    assertEquals(3,ranged.getAttackBonus());
-    assertEquals(3,ranged.getAttackBonus());
+    assertEquals(5,ranged.getAttackBonus());
+    assertEquals(5,ranged.getAttackBonus());
 
     // Cavalry
     assertEquals(6,cavalry.getAttackBonus());

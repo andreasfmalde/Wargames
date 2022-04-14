@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
  * of the battle class. Mainly the simulate
  * method.
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (22.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 class BattleTest {
 
@@ -80,7 +80,7 @@ class BattleTest {
       unit.setHealth(health<100?health:health-95);
     }
 
-    Battle battle = new Battle(humanArmy,orcishHorde);
+    Battle battle = new Battle(humanArmy,orcishHorde,Terrain.FOREST);
 
     // It is most likely that the Orcish horde will win
     // because the human army units have less health
@@ -101,7 +101,7 @@ class BattleTest {
       int health = unit.getHealth();
       unit.setHealth(health<100?health:health-95);
     }
-    Battle battle = new Battle(humanArmy,orcishHorde);
+    Battle battle = new Battle(humanArmy,orcishHorde,Terrain.FOREST);
 
     // It is most likely that the Human army will win
     // because the orcish Horde  units have less health
