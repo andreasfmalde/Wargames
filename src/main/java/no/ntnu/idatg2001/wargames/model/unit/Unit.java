@@ -8,14 +8,14 @@ import no.ntnu.idatg2001.wargames.model.battle.Terrain;
  * Provides basic functionality of a unit.
  *
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (23.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 public abstract class Unit {
 
-  private String name;
+  private final String name;
   private int health;
-  private int attack;
-  private int armor;
+  private final int attack;
+  private final int armor;
   private Terrain terrain;
 
   /**
