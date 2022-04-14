@@ -22,6 +22,7 @@ public class Battle {
    * taking in two armies as parameter
    * @param armyOne First army
    * @param armyTwo Second army
+   * @param terrain Terrain of where the battle takes place
    */
   public Battle(Army armyOne, Army armyTwo,Terrain terrain){
     if (armyOne == null || armyTwo == null){
