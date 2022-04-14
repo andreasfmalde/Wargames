@@ -3,10 +3,10 @@ package no.ntnu.idatg2001.wargames;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import no.ntnu.idatg2001.wargames.view.ViewLoader;
 
 /**
  * Main class containing the main method to
@@ -25,7 +25,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("main-window.fxml"));
+    Parent root = ViewLoader.getFXML("main-window").load();
     Scene scene = new Scene(root);
     stage.setTitle("War Games");
     stage.setScene(scene);
