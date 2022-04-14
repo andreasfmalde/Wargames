@@ -1,6 +1,5 @@
 package no.ntnu.idatg2001.wargames.model.unit.units;
 
-import no.ntnu.idatg2001.wargames.model.battle.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 
 /**

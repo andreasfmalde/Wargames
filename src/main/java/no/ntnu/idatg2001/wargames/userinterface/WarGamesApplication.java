@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.battle.Battle;
-import no.ntnu.idatg2001.wargames.model.battle.Terrain;
+import no.ntnu.idatg2001.wargames.model.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.units.CavalryUnit;

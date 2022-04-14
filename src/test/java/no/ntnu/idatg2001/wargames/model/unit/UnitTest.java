@@ -2,7 +2,7 @@ package no.ntnu.idatg2001.wargames.model.unit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import no.ntnu.idatg2001.wargames.model.battle.Terrain;
+import no.ntnu.idatg2001.wargames.model.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.units.CavalryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.units.CommanderUnit;

@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001.wargames.model.battle;
+package no.ntnu.idatg2001.wargames.model;
 
 /**
  * Enum to represent the different terrain

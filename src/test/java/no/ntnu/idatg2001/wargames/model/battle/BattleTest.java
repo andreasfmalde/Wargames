@@ -1,6 +1,7 @@
 package no.ntnu.idatg2001.wargames.model.battle;
 
 
+import no.ntnu.idatg2001.wargames.model.Terrain;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
@@ -80,7 +81,7 @@ class BattleTest {
       unit.setHealth(health<100?health:health-95);
     }
 
-    Battle battle = new Battle(humanArmy,orcishHorde,Terrain.FOREST);
+    Battle battle = new Battle(humanArmy,orcishHorde, Terrain.FOREST);
 
     // It is most likely that the Orcish horde will win
     // because the human army units have less health
