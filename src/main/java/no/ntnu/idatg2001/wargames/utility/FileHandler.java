@@ -7,11 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.UnitFactory;
-import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
-import no.ntnu.idatg2001.wargames.model.unit.units.CavalryUnit;
-import no.ntnu.idatg2001.wargames.model.unit.units.CommanderUnit;
-import no.ntnu.idatg2001.wargames.model.unit.units.RangedUnit;
 
 /**
  * FileHandler class handling communication between
