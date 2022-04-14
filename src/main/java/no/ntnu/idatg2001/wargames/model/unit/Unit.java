@@ -125,7 +125,13 @@ public abstract class Unit {
     }
     int newHealth = opponent.getHealth() - (this.attack + this.getAttackBonus())+
         (opponent.getArmor() + opponent.getResistBonus());
-    opponent.setHealth(Math.max(newHealth, 0));
+    // Try to set opponent health. If the new health is below 0,
+    // 0 will be set.
+    try{
+      opponent.setHealth(newHealth);
+    }catch (IllegalArgumentException e){
+      opponent.setHealth(0);
+    }
 
   }
 
