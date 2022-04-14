@@ -15,7 +15,7 @@ import no.ntnu.idatg2001.wargames.model.unit.units.RangedUnit;
 /**
  * Class that represents an army containing different units.
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (16.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 public class Army {
 
@@ -62,6 +62,11 @@ public class Army {
     this.name = name;
   }
 
+  /**
+   * Loop through all units in the army and
+   * set the terrain.
+   * @param terrain Type of terrain
+   */
   public void setTerrain(Terrain terrain){
     for(Unit unit : units){
       unit.setTerrain(terrain);
@@ -111,8 +116,6 @@ public class Army {
         .collect(Collectors.toList());
 
   }
-
-
 
   /**
    * Add a new unit to the army.
