@@ -61,7 +61,7 @@ public class FileHandler {
       String line = reader.readLine();
       // Make sure only the army name is on top of the file
       if(line.split(",").length != 1)
-        throw new IOException("No army name at the top of the file");
+        throw new IOException("[FORMAT ERROR] No army name at the top of the file");
       // Initialize an army object
       Army army = new Army(line);
       // Add units to the army based on the amount of unit lines in the file
@@ -69,7 +69,7 @@ public class FileHandler {
         String[] unitLine = line.split(",");
         // Make sure all unit lines contains three values
         if(unitLine.length != 3)
-          throw new IOException("There are not three unit values on the unit line");
+          throw new IOException("[FORMAT ERROR] There are not three unit values on the unit line");
         // Add unit to the army based on the unit values
         army.add(UnitFactory.createUnit(unitLine[0].strip(),unitLine[1].strip(),Integer.parseInt(unitLine[2].strip())));
       }
