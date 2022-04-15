@@ -141,7 +141,7 @@ public abstract class Unit {
    */
   @Override
   public String toString(){
-    return "[ "+name+" | Current Health: "+health+" | Attack: "+attack+" | Armor: "+armor+" ]";
+    return this.getClass().getSimpleName() + ", "+name+", "+health;
   }
 
 
