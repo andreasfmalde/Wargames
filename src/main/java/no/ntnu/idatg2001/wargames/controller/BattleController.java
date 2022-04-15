@@ -3,10 +3,13 @@ package no.ntnu.idatg2001.wargames.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import no.ntnu.idatg2001.wargames.view.ViewLoader;
 
 public class BattleController implements Initializable {
@@ -27,5 +30,13 @@ public class BattleController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+
+  public void createArmyButtonPressed(ActionEvent actionEvent) throws IOException {
+    Stage stage =(Stage)leftArmy.getScene().getWindow();
+    Parent root = ViewLoader.getFXML("create-army").load();
+    stage.setScene(new Scene(root));
+    stage.show();
   }
 }
