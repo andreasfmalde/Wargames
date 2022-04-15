@@ -2,6 +2,7 @@ package no.ntnu.idatg2001.wargames.utility;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.io.IOException;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.units.InfantryUnit;
@@ -53,7 +54,7 @@ class FileHandlerTest {
     Army sameArmy;
     // Read from file and create an army object based on the file
     try {
-      sameArmy = FileHandler.getArmyFromFile("Tester-Army");
+      sameArmy = FileHandler.getArmyFromFile(new File("src/main/resources/armyFiles/Tester-Army.csv"));
       // army and sameArmy should be the same
       assertEquals(army,sameArmy);
     }
@@ -73,7 +74,7 @@ class FileHandlerTest {
     // Testing to make sure an army object will not be created if there
     // are no file with the specified filename,
     try{
-      Army failArmy = FileHandler.getArmyFromFile("NotAFilename");
+      Army failArmy = FileHandler.getArmyFromFile(new File("NotAFile"));
       fail();
     }catch (IOException e){
       assertTrue(true);
@@ -81,7 +82,7 @@ class FileHandlerTest {
 
     // Throwing exception if the file format is not how it should be
     try{
-      Army failArmy = FileHandler.getArmyFromFile("fail");
+      Army failArmy = FileHandler.getArmyFromFile(new File("src/main/resources/armyFiles/fail.csv"));
       fail();
     }catch (IOException e){
       assertEquals("There are not three unit values on the unit line",e.getMessage());

@@ -2,6 +2,7 @@ package no.ntnu.idatg2001.wargames.utility;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -49,13 +50,13 @@ public class FileHandler {
   /**
    * Method that will read a file if it exists and
    * create an army object based on the file
-   * @param filename Name of the file to read
+   * @param file File to open and read from
    * @return An army object based on the specifications in the file
    * @throws IOException Any input/output problems will have to be handled
    */
-  public static Army getArmyFromFile(String filename) throws IOException {
+  public static Army getArmyFromFile(File file) throws IOException {
     // Opening a file to read based on the filename
-    try(BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/armyFiles/"+filename+".csv"))){
+    try(BufferedReader reader = new BufferedReader(new FileReader(file))){
       //Get the first line in the file
       String line = reader.readLine();
       // Make sure only the army name is on top of the file
