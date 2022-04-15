@@ -10,38 +10,38 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="armyMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: rgb(190,190,190);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.wargames.controller.ArmyController">
+<VBox fx:id="armyMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: rgb(190,190,190);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.wargames.controller.ArmyController">
    <children>
-      <Label alignment="CENTER" prefHeight="60.0" prefWidth="203.0" text="Label">
+      <Label fx:id="armyNameLabel" alignment="CENTER" prefHeight="60.0" prefWidth="250.0" text="Label">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Line endX="100.0" startX="-100.0" strokeWidth="2.0" />
+      <Line endX="125.0" startX="-125.0" strokeWidth="2.0" />
       <HBox prefHeight="30.0" prefWidth="200.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="100.0">
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="125.0">
                <children>
                   <Label text="InfantryUnit(s): ">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <Label text="X">
+                  <Label fx:id="infantryUnits" text="X">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="100.0">
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="125.0">
                <children>
                   <Label text="Cavalry Unit(s): ">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <Label text="X">
+                  <Label fx:id="cavalryUnits" text="X">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -52,28 +52,28 @@
       </HBox>
       <HBox prefHeight="30.0" prefWidth="200.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="100.0">
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="125.0">
                <children>
                   <Label text="Ranged Unit(s): ">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <Label text="X">
+                  <Label fx:id="rangedUnits" text="X">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="100.0">
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="125.0">
                <children>
                   <Label text="Commander Unit(s): ">
                      <font>
                         <Font size="9.0" />
                      </font>
                   </Label>
-                  <Label text="X">
+                  <Label fx:id="commanderUnits" text="X">
                      <font>
                         <Font size="9.0" />
                      </font>
@@ -90,9 +90,9 @@
             <Insets left="12.0" />
          </VBox.margin>
       </Label>
-      <ScrollPane maxWidth="180.0">
+      <ScrollPane maxWidth="230.0">
          <content>
-            <ListView maxWidth="170.0" prefHeight="200.0" prefWidth="163.0" />
+            <ListView fx:id="unitListView" maxWidth="213.0" prefHeight="200.0" prefWidth="213.0" style="-fx-font-size: 10;" />
          </content>
          <VBox.margin>
             <Insets left="10.0" top="5.0" />
@@ -100,7 +100,7 @@
       </ScrollPane>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
          <children>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="120.0" text="Label">
+            <Label fx:id="armyFileLabel" alignment="CENTER" prefHeight="50.0" prefWidth="120.0" text="Label">
                <font>
                   <Font size="10.0" />
                </font>
