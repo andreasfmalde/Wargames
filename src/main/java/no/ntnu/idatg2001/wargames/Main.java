@@ -25,7 +25,7 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    Parent root = ViewLoader.getFXML("main-window").load();
+    Parent root = ViewLoader.getFXML("battle-window").load();
     Scene scene = new Scene(root);
     stage.setTitle("War Games");
     stage.setScene(scene);

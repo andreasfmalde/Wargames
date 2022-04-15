@@ -6,11 +6,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import no.ntnu.idatg2001.wargames.view.ViewLoader;
 
-public class Controller implements Initializable {
+public class BattleController implements Initializable {
 
   @FXML
   private VBox leftArmy;
