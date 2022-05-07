@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
  * Test class for the army class to make sure
  * the core functionality work as intended.
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (22.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 class ArmyTest {
 
@@ -125,6 +125,32 @@ class ArmyTest {
       assertEquals("Unit list can not be null",e.getMessage());
     }
 
+    List<Unit> lotsOfUnits = new ArrayList<>();
+    for(int i = 0; i<196;i++){
+      lotsOfUnits.add(new InfantryUnit("Infantry1",125));
+    }
+
+    // Adding units to swedish army so that it contains the maximum amount of units.
+    swedishArmy.addAll(lotsOfUnits);
+    assertEquals(200,swedishArmy.getAllUnits().size());
+
+    // Expecting an exception when trying to add one more unit to the army
+    try {
+      swedishArmy.add(new CommanderUnit("Commander1", 200));
+      fail();
+    }catch (IllegalArgumentException e){
+      assertEquals("Can not add unit. Maximum amount of 200 is reached",e.getMessage());
+    }
+    // Expecting an exception when trying to add a list of units that will surpass the max amount limit
+    try{
+      for(int i = 0; i< 10;i++){
+        norwegianArmy.add(new InfantryUnit("The infantry",135));
+      }
+      norwegianArmy.addAll(lotsOfUnits);
+      fail();
+    }catch (IllegalArgumentException e){
+      assertEquals("Can not add units. Maximum amount of 200 will be surpassed",e.getMessage());
+    }
   }
 
 
