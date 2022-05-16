@@ -2,6 +2,7 @@ package no.ntnu.idatg2001.wargames.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -28,6 +29,7 @@ public class ArmyController {
   public void loadArmyButtonPressed(ActionEvent actionEvent) {
     FileChooser fileChooser = new FileChooser();
     try{
+      fileChooser.setInitialDirectory(new File(Path.of(".").toAbsolutePath().normalize().toString()));
       File armyFile = fileChooser.showOpenDialog(armyMainPane.getScene().getWindow());
       army = FileHandler.getArmyFromFile(armyFile);
       armyNameLabel.setText(army.getName());
