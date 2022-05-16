@@ -2,17 +2,23 @@ package no.ntnu.idatg2001.wargames.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import no.ntnu.idatg2001.wargames.model.GameManager;
+import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.view.ViewLoader;
 
 public class BattleController implements Initializable {
+
+  private GameManager manager;
 
   @FXML
   private VBox leftArmy;
@@ -30,6 +36,7 @@ public class BattleController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    manager = GameManager.getInstance();
   }
 
 
@@ -38,5 +45,10 @@ public class BattleController implements Initializable {
     Parent root = ViewLoader.getFXML("create-army").load();
     stage.setScene(new Scene(root));
     stage.show();
+  }
+
+  public void showInfo(ActionEvent event) {
+    List<Army> armies = manager.getArmies();
+    new Alert(Alert.AlertType.INFORMATION,armies.get(0).getName()+" - "+armies.get(1).getName()).showAndWait();
   }
 }
