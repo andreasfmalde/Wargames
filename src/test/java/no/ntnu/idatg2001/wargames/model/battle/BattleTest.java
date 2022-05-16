@@ -44,17 +44,17 @@ class BattleTest {
     Unit guldan = new CommanderUnit("Gul'dan",180);
     orcishHorde = new Army("Orcish horde");
 
-    for(int i = 0;i<500;i++){
-      // Adding 500 infantry units in both armies.
+    for(int i = 0;i<100;i++){
+      // Adding 100 infantry units in both armies.
       humanArmy.add(footMan);
       orcishHorde.add(grunt);
-      if(i < 100){
-        // Adding 100 cavalry units in both armies.
+      if(i < 20){
+        // Adding 20 cavalry units in both armies.
         humanArmy.add(knight);
         orcishHorde.add(raider);
       }
-      if(i < 200){
-        // Adding 200 ranged units in both armies.
+      if(i < 60){
+        // Adding 60 ranged units in both armies.
         humanArmy.add(archer);
         orcishHorde.add(spearMan);
       }
