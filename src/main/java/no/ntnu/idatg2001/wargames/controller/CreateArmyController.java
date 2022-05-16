@@ -1,7 +1,9 @@
 package no.ntnu.idatg2001.wargames.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
@@ -46,7 +49,14 @@ public class CreateArmyController implements Initializable {
     Army army = new Army(armyName.getText());
     army.addAll(unitList);
     try{
-      FileHandler.writeArmyToFile(army);
+      FileChooser chooser = new FileChooser();
+      chooser.setInitialFileName(armyName.getText());
+      chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.csv","Comma Separated File"));
+      chooser.setInitialDirectory( new File(Paths.get(".").toAbsolutePath().normalize().toString()));
+      File file = chooser.showSaveDialog(armyName.getScene().getWindow());
+      if(file != null){
+        FileHandler.writeArmyToFile(army,file);
+      }
     }catch (IOException e){
       new Alert(Alert.AlertType.WARNING,e.getMessage()).showAndWait();
     }

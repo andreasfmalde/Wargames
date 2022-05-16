@@ -28,12 +28,11 @@ public class FileHandler {
    * Method to handle creating and writing army
    * objects to a file.
    * @param army Army object to write to a file
+   * @param file File to save the armyObject
    */
-  public static void writeArmyToFile(Army army) throws IOException {
-    // Making the filename based on the army name
-    String filename = army.getName().replace(' ','-');
+  public static void writeArmyToFile(Army army, File file) throws IOException {
     // Creating and writing to file
-    try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/armyFiles/"+filename+".csv"))){
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
       // Army name at the top of the file
       writer.write(army.getName()+"\n");
       // Listing all units in the army

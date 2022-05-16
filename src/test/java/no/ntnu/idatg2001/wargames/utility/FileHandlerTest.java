@@ -44,7 +44,7 @@ class FileHandlerTest {
   void normalOperationReadingAndWritingToFileTest(){
     // Write army class to file
     try{
-      FileHandler.writeArmyToFile(army);
+      FileHandler.writeArmyToFile(army,new File("src/main/resources/armyFiles/Tester-Army.csv"));
     }
     catch (IOException e){
       // Any problems writing to the file will cause a failed test
@@ -85,7 +85,7 @@ class FileHandlerTest {
       Army failArmy = FileHandler.getArmyFromFile(new File("src/main/resources/armyFiles/fail.csv"));
       fail();
     }catch (IOException e){
-      assertEquals("There are not three unit values on the unit line",e.getMessage());
+      assertEquals("[FORMAT ERROR] There are not three unit values on the unit line",e.getMessage());
     }
 
   }

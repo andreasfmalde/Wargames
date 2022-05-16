@@ -22,6 +22,7 @@ public class Army {
   private String name;
   private List<Unit> units;
   private final Random random;
+  private final int MAX_AMOUNT_OF_UNITS = 200;
 
 
   /**
@@ -45,6 +46,8 @@ public class Army {
     this.setName(name);
     if(units == null){
       throw new IllegalArgumentException("The provided list can not be null");
+    }else if (units.size() > MAX_AMOUNT_OF_UNITS){
+      throw new IllegalArgumentException("Maximum amount of units in the army is: "+MAX_AMOUNT_OF_UNITS);
     }
     this.units = units;
     random = new Random();
@@ -124,6 +127,8 @@ public class Army {
   public void add(Unit unit){
     if(unit == null){
       throw new IllegalArgumentException("Unit object can not be null");
+    }else if(this.units.size() == MAX_AMOUNT_OF_UNITS){
+      throw new IllegalArgumentException("Can not add unit. Maximum amount of "+MAX_AMOUNT_OF_UNITS+" is reached");
     }
     units.add(unit);
   }
@@ -135,6 +140,8 @@ public class Army {
   public void addAll(List<Unit> units){
     if(units == null ){
       throw new IllegalArgumentException("Unit list can not be null");
+    } else if((this.units.size() + units.size())>MAX_AMOUNT_OF_UNITS){
+      throw new IllegalArgumentException("Can not add units. Maximum amount of "+MAX_AMOUNT_OF_UNITS+" will be surpassed");
     }
     this.units.addAll(units);
   }
