@@ -5,12 +5,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import no.ntnu.idatg2001.wargames.model.GameManager;
@@ -27,9 +31,14 @@ public class ArmyController implements Initializable {
   @FXML private Label cavalryUnits;
   @FXML private Label rangedUnits;
   @FXML private Label commanderUnits;
-  @FXML private ListView unitListView;
   @FXML private Label armyFileLabel;
   @FXML private VBox armyMainPane;
+
+  private ObservableList<Unit> unitList;
+  public TableColumn unitHealthColumn;
+  public TableColumn unitNameColumn;
+  public TableColumn unitTypeColumn;
+  public TableView armyTableView;
 
   public void loadArmyButtonPressed(ActionEvent actionEvent) {
     FileChooser fileChooser = new FileChooser();
@@ -39,14 +48,18 @@ public class ArmyController implements Initializable {
       File armyFile = fileChooser.showOpenDialog(armyMainPane.getScene().getWindow());
       army = FileHandler.getArmyFromFile(armyFile);
       manager.changeArmy(army,previousArmy);
+      armyTableView.setItems((ObservableList) army.getAllUnits());
+
+      unitNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+      unitHealthColumn.setCellValueFactory(new PropertyValueFactory<>("health"));
+      unitTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+
       armyNameLabel.setText(army.getName());
       infantryUnits.setText(String.valueOf(army.getInfantryUnits().size()));
       cavalryUnits.setText(String.valueOf(army.getCavalryUnits().size()));
       rangedUnits.setText(String.valueOf(army.getRangedUnits().size()));
       commanderUnits.setText(String.valueOf(army.getCommanderUnits().size()));
-      for(Unit unit : army.getAllUnits()){
-        unitListView.getItems().add(unit);
-      }
+
       armyFileLabel.setText(armyFile.getName());
     }catch (IOException e){
       new Alert(Alert.AlertType.WARNING,e.getMessage()).showAndWait();
