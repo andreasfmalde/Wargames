@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,12 +32,10 @@ public class ArmyController implements Initializable {
   @FXML private Label commanderUnits;
   @FXML private Label armyFileLabel;
   @FXML private VBox armyMainPane;
-
-  private ObservableList<Unit> unitList;
-  public TableColumn unitHealthColumn;
-  public TableColumn unitNameColumn;
-  public TableColumn unitTypeColumn;
-  public TableView armyTableView;
+  @FXML private TableColumn<Unit, Integer> unitHealthColumn;
+  @FXML private TableColumn<Unit, String> unitNameColumn;
+  @FXML private TableColumn<Unit, String> unitTypeColumn;
+  @FXML private TableView<Unit> armyTableView;
 
   public void loadArmyButtonPressed(ActionEvent actionEvent) {
     FileChooser fileChooser = new FileChooser();
@@ -48,7 +45,7 @@ public class ArmyController implements Initializable {
       File armyFile = fileChooser.showOpenDialog(armyMainPane.getScene().getWindow());
       army = FileHandler.getArmyFromFile(armyFile);
       manager.changeArmy(army,previousArmy);
-      armyTableView.setItems((ObservableList) army.getAllUnits());
+      armyTableView.setItems((ObservableList<Unit>) army.getAllUnits());
 
       unitNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
       unitHealthColumn.setCellValueFactory(new PropertyValueFactory<>("health"));
