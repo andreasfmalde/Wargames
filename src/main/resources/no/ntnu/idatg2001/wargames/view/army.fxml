@@ -10,21 +10,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="armyMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: rgb(190,190,190);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.wargames.controller.ArmyController">
+<VBox fx:id="armyMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: rgb(190,190,190);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.wargames.controller.ArmyController">
    <children>
-      <Label fx:id="armyNameLabel" alignment="CENTER" prefHeight="60.0" prefWidth="300.0" text="Label">
+      <Label fx:id="armyNameLabel" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="Army">
          <font>
-            <Font size="20.0" />
+            <Font name="Copperplate Gothic Bold" size="20.0" />
          </font>
       </Label>
-      <Line endX="175.0" startX="-125.0" strokeWidth="2.0" />
+      <Line endX="125.0" startX="-125.0" strokeWidth="2.0" />
       <HBox prefHeight="30.0" prefWidth="200.0">
          <children>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="125.0">
                <children>
-                  <Label text="InfantryUnit(s): ">
+                  <Label text="Infantry Unit(s): ">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Copperplate Gothic Light" size="10.0" />
                      </font>
                   </Label>
                   <Label fx:id="infantryUnits" text="X">
@@ -38,7 +38,7 @@
                <children>
                   <Label text="Cavalry Unit(s): ">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Copperplate Gothic Light" size="10.0" />
                      </font>
                   </Label>
                   <Label fx:id="cavalryUnits" text="X">
@@ -56,7 +56,7 @@
                <children>
                   <Label text="Ranged Unit(s): ">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Copperplate Gothic Light" size="10.0" />
                      </font>
                   </Label>
                   <Label fx:id="rangedUnits" text="X">
@@ -66,11 +66,11 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="125.0">
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="130.0">
                <children>
                   <Label text="Commander Unit(s): ">
                      <font>
-                        <Font size="9.0" />
+                        <Font name="Copperplate Gothic Light" size="10.0" />
                      </font>
                   </Label>
                   <Label fx:id="commanderUnits" text="X">
@@ -84,7 +84,7 @@
       </HBox>
       <Label alignment="BOTTOM_LEFT" prefHeight="20.0" prefWidth="180.0" text="Unit List:">
          <font>
-            <Font name="System Bold" size="11.0" />
+            <Font name="Copperplate Gothic Bold" size="11.0" />
          </font>
          <VBox.margin>
             <Insets left="12.0" />
@@ -92,21 +92,38 @@
       </Label>
       <TableView fx:id="armyTableView" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="unitTypeColumn" prefWidth="125.0" text="Type" />
-          <TableColumn fx:id="unitNameColumn" prefWidth="125.0" text="Name" />
+          <TableColumn fx:id="unitTypeColumn" prefWidth="90.0" text="Type" />
+          <TableColumn fx:id="unitNameColumn" prefWidth="110.0" text="Name" />
             <TableColumn fx:id="unitHealthColumn" prefWidth="50.0" text="Health" />
         </columns>
       </TableView>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+      <HBox prefHeight="20.0" prefWidth="250.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="79.0" text="Total units:">
+               <font>
+                  <Font name="Copperplate Gothic Light" size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="totalUnits" prefHeight="27.0" prefWidth="83.0" text="0">
+               <font>
+                  <Font name="Copperplate Gothic Light" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="250.0">
          <children>
             <Label fx:id="armyFileLabel" alignment="CENTER" prefHeight="50.0" prefWidth="120.0" text="Label">
                <font>
-                  <Font size="10.0" />
+                  <Font name="Copperplate Gothic Light" size="10.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadArmyButtonPressed" prefHeight="24.0" prefWidth="80.0" text="Load from file">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadArmyButtonPressed" prefHeight="24.0" prefWidth="98.0" text="Load from file">
                <font>
-                  <Font size="9.0" />
+                  <Font name="Copperplate Gothic Light" size="10.0" />
                </font>
             </Button>
          </children>

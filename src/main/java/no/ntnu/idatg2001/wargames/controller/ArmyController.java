@@ -40,6 +40,7 @@ public class ArmyController implements Initializable, GameObserver {
   @FXML private Label rangedUnits;
   @FXML private Label commanderUnits;
   @FXML private Label armyFileLabel;
+  @FXML private Label totalUnits;
   @FXML private VBox armyMainPane;
   @FXML private TableColumn<Unit, Integer> unitHealthColumn;
   @FXML private TableColumn<Unit, String> unitNameColumn;
@@ -74,10 +75,7 @@ public class ArmyController implements Initializable, GameObserver {
 
       // Displaying information of the army name and amount of units to the screen.
       armyNameLabel.setText(army.getName());
-      infantryUnits.setText(String.valueOf(army.getInfantryUnits().size()));
-      cavalryUnits.setText(String.valueOf(army.getCavalryUnits().size()));
-      rangedUnits.setText(String.valueOf(army.getRangedUnits().size()));
-      commanderUnits.setText(String.valueOf(army.getCommanderUnits().size()));
+      displayUnitAmount();
 
       // File name of the army file selected
       armyFileLabel.setText(armyFile.getName());
@@ -88,6 +86,18 @@ public class ArmyController implements Initializable, GameObserver {
       new Alert(Alert.AlertType.WARNING,e.getMessage()).showAndWait();
     }
 
+  }
+
+  /**
+   * Display the current amount of infantry, ranged, cavalry and commander units
+   * in the army, to the screen.
+   */
+  private void displayUnitAmount(){
+    infantryUnits.setText(String.valueOf(army.getInfantryUnits().size()));
+    cavalryUnits.setText(String.valueOf(army.getCavalryUnits().size()));
+    rangedUnits.setText(String.valueOf(army.getRangedUnits().size()));
+    commanderUnits.setText(String.valueOf(army.getCommanderUnits().size()));
+    totalUnits.setText(String.valueOf(army.getAllUnits().size()));
   }
 
   /**
@@ -111,5 +121,6 @@ public class ArmyController implements Initializable, GameObserver {
   @Override
   public void updateState(String input) {
     armyTableView.refresh();
+    displayUnitAmount();
   }
 }
