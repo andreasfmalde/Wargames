@@ -73,18 +73,26 @@ public class Battle {
       // A random unit from army one attack a random unit from army two
       defendingUnit = armyTwo.getRandom();
       attackingUnit = armyOne.getRandom();
+      // Attacking unit attacks defending unit
+      attackingUnit.attack(defendingUnit);
+
+      // If the unit getting attack has no more health, it will be removed
+      if (defendingUnit.getHealth() == 0) {
+        armyTwo.remove(defendingUnit);
+        unitDied = true;
+      }
     } else {
       // A random unit from army two attacks a random unit from army one
       defendingUnit = armyOne.getRandom();
       attackingUnit = armyTwo.getRandom();
-    }
-    // Attacking unit attacks defending unit
-    attackingUnit.attack(defendingUnit);
+      // Attacking unit attacks defending unit
+      attackingUnit.attack(defendingUnit);
 
-    // If the unit getting attack has no more health, it will be removed
-    if (defendingUnit.getHealth() == 0) {
-      armyTwo.remove(defendingUnit);
-      unitDied = true;
+      // If the unit getting attack has no more health, it will be removed
+      if (defendingUnit.getHealth() == 0) {
+        armyOne.remove(defendingUnit);
+        unitDied = true;
+      }
     }
     // String representation of which unit was the attacker, and the one attacked.
     // And a one line if/else statement to check if the unit died.
