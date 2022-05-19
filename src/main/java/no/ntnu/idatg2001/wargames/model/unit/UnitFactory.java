@@ -49,7 +49,7 @@ public class UnitFactory {
   /**
    * Create a collection of units with the same
    * name, health and type. The first parameter specifies how many
-   * units to make. The max limit is 2000 units.
+   * units to make. The max limit is 200 units.
    * @param amount Amount of units to create
    * @param type Type of unit
    * @param name Name of unit
@@ -57,8 +57,8 @@ public class UnitFactory {
    * @return A list collection of units of the same type, name and health
    */
   public static List<Unit> createMultipleUnits(int amount,String type,String name,int health){
-    if(amount > 2000){
-      throw new IllegalArgumentException("Your amount of "+amount+" units are above the maximum limit of 2000 units to create");
+    if(amount > 200){
+      throw new IllegalArgumentException("Your amount of "+amount+" units are above the maximum limit of 200 units to create");
     }
     List<Unit> units = new ArrayList<>();
     for(int i = 0; i < amount; i++){

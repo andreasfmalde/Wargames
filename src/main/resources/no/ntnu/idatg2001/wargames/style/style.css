@@ -1,0 +1,12 @@
+.start-screen-button{
+    -fx-border-width: 3;
+    -fx-border-color: #443A19;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+
+.start-screen-button:hover{
+    -fx-background-color: rgba(68,58,25,0.3);
+    -fx-cursor: hand;
+}

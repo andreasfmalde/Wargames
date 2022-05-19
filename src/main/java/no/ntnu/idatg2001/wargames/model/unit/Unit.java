@@ -17,6 +17,7 @@ public abstract class Unit {
   private final int attack;
   private final int armor;
   private Terrain terrain;
+  private final String type;
 
   /**
    * Constructor of the unit class. Used to initialize a new
@@ -42,6 +43,7 @@ public abstract class Unit {
     this.attack = attack;
     this.armor = armor;
     this.terrain = null;
+    this.type = this.getClass().getSimpleName().replace("Unit","");
   }
 
   // ----- Getter methods -----
@@ -84,6 +86,14 @@ public abstract class Unit {
    */
   protected Terrain getTerrain(){
     return terrain;
+  }
+
+  /**
+   *
+   * @return the type of unit
+   */
+  public String getType(){
+    return type;
   }
 
   // ----- Setter method -----

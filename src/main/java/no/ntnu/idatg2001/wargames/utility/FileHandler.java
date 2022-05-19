@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.UnitFactory;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
@@ -62,7 +64,7 @@ public class FileHandler {
       if(line.split(",").length != 1)
         throw new IOException("[FORMAT ERROR] No army name at the top of the file");
       // Initialize an army object
-      Army army = new Army(line);
+      Army army = new Army(line, FXCollections.observableList(new ArrayList<>()));
       // Add units to the army based on the amount of unit lines in the file
       while((line = reader.readLine())!=null){
         String[] unitLine = line.split(",");
