@@ -120,13 +120,18 @@
                         <Font name="Copperplate Gothic Bold" size="15.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="unitListView" layoutX="325.0" layoutY="52.0" prefHeight="148.0" prefWidth="350.0" style="-fx-background-color: #CCC1A5; -fx-border-width: 2; -fx-border-color: #443A19; -fx-font-family: &quot;Copperplate Gothic Light&quot;;" styleClass="unitList" stylesheets="@../style/style.css" />
-                  <Button layoutX="703.0" layoutY="92.0" mnemonicParsing="false" onAction="#createArmy" prefHeight="67.0" prefWidth="154.0" styleClass="start-screen-button" stylesheets="@../style/style.css" text="Create army as CSV" textAlignment="CENTER" wrapText="true">
+                  <ListView fx:id="unitListView" layoutX="325.0" layoutY="52.0" prefHeight="148.0" prefWidth="350.0" style="-fx-background-color: rgba(68,58,25,0.2); -fx-border-width: 2; -fx-border-color: #443A19; -fx-font-family: &quot;Copperplate Gothic Light&quot;;" styleClass="unitList" stylesheets="@../style/style.css" />
+                  <Button layoutX="747.0" layoutY="93.0" mnemonicParsing="false" onAction="#createArmy" prefHeight="67.0" prefWidth="154.0" styleClass="start-screen-button" stylesheets="@../style/style.css" text="Create army as CSV" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Button layoutX="14.0" layoutY="191.0" mnemonicParsing="false" style="-fx-border-width: 2;" styleClass="start-screen-button" stylesheets="@../style/style.css" text="Back">
+                  <Button layoutX="14.0" layoutY="191.0" mnemonicParsing="false" onAction="#goBackButtonPressed" style="-fx-border-width: 2;" styleClass="start-screen-button" stylesheets="@../style/style.css" text="Back">
+                     <font>
+                        <Font name="Copperplate Gothic Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="203.0" layoutY="114.0" mnemonicParsing="false" onAction="#deleteUnit" style="-fx-border-width: 2; -fx-border-radius: 0; -fx-background-radius: 0;" styleClass="start-screen-button" stylesheets="@../style/style.css" text="Remove unit">
                      <font>
                         <Font name="Copperplate Gothic Bold" size="12.0" />
                      </font>
