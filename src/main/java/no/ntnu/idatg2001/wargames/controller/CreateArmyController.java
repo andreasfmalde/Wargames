@@ -68,7 +68,7 @@ public class CreateArmyController implements Initializable {
       Army army = new Army(armyName.getText());
       army.addAll(unitList);
       FileChooser chooser = new FileChooser();
-      chooser.setInitialFileName(armyName.getText());
+      chooser.setInitialFileName(armyName.getText().replace(" ","-"));
       chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.csv","Comma Separated File"));
       chooser.setInitialDirectory( new File(Paths.get(".").toAbsolutePath().normalize().toString()));
       File file = chooser.showSaveDialog(armyName.getScene().getWindow());
