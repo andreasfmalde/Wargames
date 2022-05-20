@@ -43,7 +43,8 @@ public class BattleController implements Initializable, GameObserver {
   private ObservableList<String> messageList;
   private Terrain terrain;
   private int simulationSpeed;
-  private boolean simulationRun;
+  private boolean simulationRun; // Keeping track of if the simulation has run, but is not finished
+  private boolean firstRun; // Used to make sure copies of armies are only made at the start
 
   // ----- JavaFX variables -----
   @FXML
@@ -87,6 +88,7 @@ public class BattleController implements Initializable, GameObserver {
     simulationSpinner.setValueFactory(spinnerFactory);
     simulationSpeed = simulationSpinner.getValue();
     simulationRun = false;
+    firstRun = false;
   }
 
   /**
@@ -114,7 +116,10 @@ public class BattleController implements Initializable, GameObserver {
         // Get the simulation speed value from the spinner
         simulationSpeed = simulationSpinner.getValue();
         // Get the battle with the two current armies
-        battle = manager.getBattle(terrain);
+        if(!firstRun){
+          battle = manager.getBattle(terrain);
+        }
+        firstRun = true;
         // Start a simulation loop, stepping through each attack
         timeline = new Timeline(new KeyFrame(Duration.millis(simulationSpeed),this::doStep));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -228,5 +233,6 @@ public class BattleController implements Initializable, GameObserver {
     resetTerrainButtonStyle();
     messageList.clear();
     simulationRun = false;
+    firstRun = false;
   }
 }
