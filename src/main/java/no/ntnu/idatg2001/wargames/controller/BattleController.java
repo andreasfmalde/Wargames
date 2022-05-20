@@ -6,12 +6,15 @@ import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -33,12 +36,15 @@ public class BattleController implements Initializable, GameObserver {
   private GameManager manager;
   private Battle battle;
   private Timeline timeline;
+  private ObservableList<String> messageList;
 
   // ----- JavaFX variables -----
   @FXML
   private VBox leftArmy;
   @FXML
   private VBox rightArmy;
+  @FXML
+  private ListView battleListView;
 
 
   /**
@@ -60,6 +66,8 @@ public class BattleController implements Initializable, GameObserver {
     manager = GameManager.getInstance();
     // Adding battle controller as a game observer
     manager.addObserver(this);
+    messageList = FXCollections.observableArrayList();
+    battleListView.setItems(messageList);
   }
 
   /**
@@ -100,6 +108,8 @@ public class BattleController implements Initializable, GameObserver {
    */
   private void doStep(ActionEvent event){
     String battleMessage = battle.simulateStep();
+    messageList.add(battleMessage);
+    battleListView.scrollTo(messageList.size()-1);
     // Send update of the battle simulation step
     manager.updateObservers(battleMessage);
     // Stop the timeline loop if on of the armies have won
