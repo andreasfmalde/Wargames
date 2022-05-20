@@ -35,8 +35,8 @@ public class CreateArmyController implements Initializable {
   private ObservableList<Unit> unitList;
 
   // ----- JavaFX variables -----
-  @FXML private ComboBox typeComboBox;
-  @FXML private ListView unitListView;
+  @FXML private ComboBox<String> typeComboBox;
+  @FXML private ListView<Unit> unitListView;
   @FXML private TextField unitAmount;
   @FXML private TextField unitHealth;
   @FXML private TextField unitName;
@@ -133,7 +133,7 @@ public class CreateArmyController implements Initializable {
    */
   @FXML
   private void deleteUnit(ActionEvent event) {
-    Unit unitToRemove = (Unit) unitListView.getSelectionModel().getSelectedItem();
+    Unit unitToRemove =  unitListView.getSelectionModel().getSelectedItem();
     if(unitToRemove == null){
       new Alert(Alert.AlertType.INFORMATION,"Please select a unit from the list to remove").showAndWait();
     }else{
