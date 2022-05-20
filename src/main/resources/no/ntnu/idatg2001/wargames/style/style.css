@@ -63,7 +63,7 @@
 }
 
 .simulation-spinner{
-    -fx-base: rgba(30,30,30,0.8);
+    -fx-base: rgba(68,58,25,0.3);
     -fx-font-family: "Copperplate Gothic Light";
     -fx-text-fill: White;
 }
