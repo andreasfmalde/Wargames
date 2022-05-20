@@ -13,12 +13,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import no.ntnu.idatg2001.wargames.model.GameManager;
@@ -45,6 +49,7 @@ public class BattleController implements Initializable, GameObserver {
   private int simulationSpeed;
   private boolean simulationRun; // Keeping track of if the simulation has run, but is not finished
   private boolean firstRun; // Used to make sure copies of armies are only made at the start
+  private GraphicsContext context;
 
   // ----- JavaFX variables -----
   @FXML
@@ -61,6 +66,8 @@ public class BattleController implements Initializable, GameObserver {
   private Button forestButton;
   @FXML
   private Spinner<Integer> simulationSpinner;
+  @FXML
+  private Canvas canvas;
 
 
   /**
@@ -87,8 +94,10 @@ public class BattleController implements Initializable, GameObserver {
     SpinnerValueFactory<Integer> spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(5,120,80,5);
     simulationSpinner.setValueFactory(spinnerFactory);
     simulationSpeed = simulationSpinner.getValue();
+    context = canvas.getGraphicsContext2D();
     simulationRun = false;
     firstRun = false;
+    //drawToCanvas();
   }
 
   /**
@@ -197,6 +206,7 @@ public class BattleController implements Initializable, GameObserver {
     resetTerrainButtonStyle();
     // Change background color of the selected button
     selectedButton.setStyle("-fx-background-color: rgba(68,58,25,0.8)");
+    drawGroundTerrain();
 
   }
 
@@ -234,5 +244,38 @@ public class BattleController implements Initializable, GameObserver {
     messageList.clear();
     simulationRun = false;
     firstRun = false;
+    drawGroundTerrain();
   }
+
+  private void drawGroundTerrain(){
+    if(terrain != null){
+      switch (terrain){
+        case PLAINS:
+          context.drawImage(ViewLoader.getImage("grass"),0,0);
+          break;
+        case FOREST:
+          context.drawImage(ViewLoader.getImage("forestGround"),0,0);
+          break;
+        case HILL:
+          context.drawImage(ViewLoader.getImage("hillGround"),0,0);
+          break;
+      }
+    }else {
+      context.setFill(Paint.valueOf("D3C8A9"));
+      context.fillRect(0,0,540,270);
+    }
+  }
+
+  private void drawToCanvas(){
+
+  }
+
+  private void updateCanvas(){
+
+  }
+
+
+
+
+
 }

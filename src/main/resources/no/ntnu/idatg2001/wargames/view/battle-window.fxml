@@ -53,7 +53,7 @@
                   <Font name="Copperplate Gothic Bold" size="51.0" />
                </font>
             </Label>
-            <Canvas height="270.0" width="540.0" />
+            <Canvas fx:id="canvas" height="270.0" width="540.0" />
             <HBox prefHeight="77.0" prefWidth="540.0">
                <children>
                   <VBox prefHeight="62.0" prefWidth="149.0">
