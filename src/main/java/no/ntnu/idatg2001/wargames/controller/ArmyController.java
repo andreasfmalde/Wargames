@@ -127,22 +127,34 @@ public class ArmyController implements Initializable, GameObserver {
     displayUnitAmount();
   }
 
+  /**
+   * Update a copy of the selected army. Useful before starting a
+   * simulation where the army state will change.
+   */
   @Override
   public void updateCopies() {
     ObservableList<Unit> units = FXCollections.observableArrayList();
+    // Copy all units in the current army, to a new list
     for(Unit unit : army.getAllUnits()){
       units.add(UnitFactory.createUnit(unit.getClass().getSimpleName(),unit.getName(),unit.getHealth()));
     }
+    // Make a new army object with the same name and same unit as the primary army
     armyCopy = new Army(army.getName(),units);
   }
 
+  /**
+   * Reset the state of the army view. Reset the army to
+   * its original state.
+   */
   @Override
   public void resetState() {
     if(armyCopy != null){
       manager.changeArmy(armyCopy,army);
       army = armyCopy;
       armyCopy = null;
+      // Update the tableview with the new army
       armyTableView.setItems((ObservableList<Unit>) army.getAllUnits());
+      // Update amount labels in the army view
       this.updateState("");
     }
 

@@ -2,12 +2,8 @@ package no.ntnu.idatg2001.wargames.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.battle.Battle;
-import no.ntnu.idatg2001.wargames.model.unit.Unit;
-
 /**
  * Game manager class working as a facade in the application.
  * Responsible to store and distribute information around the
@@ -100,6 +96,7 @@ public class GameManager {
     if(armies.size() != 2){
       throw new IllegalStateException("There has to be two armies in a battle");
     }
+    // Send a message to all observers to make copies of armies, before the battle starts
     for(GameObserver observer : observers){
       observer.updateCopies();
     }
@@ -107,6 +104,10 @@ public class GameManager {
   }
 
 
+  /**
+   * Distribute information to all observers to reset to
+   * original state
+   */
   public void resetBattle(){
     if(armies.size() == 2) {
       for(GameObserver observer : observers){

@@ -111,11 +111,15 @@ public class BattleController implements Initializable, GameObserver {
   private void simulateBattle(ActionEvent event) {
     if(!simulationRun){
       try{
+        // Get the simulation speed value from the spinner
         simulationSpeed = simulationSpinner.getValue();
+        // Get the battle with the two current armies
         battle = manager.getBattle(terrain);
+        // Start a simulation loop, stepping through each attack
         timeline = new Timeline(new KeyFrame(Duration.millis(simulationSpeed),this::doStep));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+        // The simulation has run
         simulationRun = true;
       }catch (IllegalStateException | IllegalArgumentException e){
         new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
@@ -161,9 +165,15 @@ public class BattleController implements Initializable, GameObserver {
 
   }
 
+  /**
+   * Choose terrain for the simulation. Hill, Forest or Plains
+   * @param event used to figure out which button is pressed
+   */
   @FXML
   private void terrainButtonPressed(ActionEvent event) {
+    // Find which button is pressed
     Button selectedButton = (Button) event.getSource();
+    // Update the terrain based on the button pressed
     switch (selectedButton.getId()){
       case "hillButton":
         terrain = Terrain.HILL;
@@ -178,17 +188,27 @@ public class BattleController implements Initializable, GameObserver {
         terrain = null;
         break;
     }
+    // Reset all buttons to look unselected
     resetTerrainButtonStyle();
+    // Change background color of the selected button
     selectedButton.setStyle("-fx-background-color: rgba(68,58,25,0.8)");
 
   }
 
+  /**
+   * Reset the style on all terrain button. So none of them
+   * look selected
+   */
   private void resetTerrainButtonStyle(){
     for(Button button : new Button[]{hillButton,forestButton,plainsButton}){
       button.setStyle("-fx-background-color: rgba(68,58,25,0.4)");
     }
   }
 
+  /**
+   * This button will stop the simulation if it hasn't finished yet.
+   * @param event N/A
+   */
   @FXML
   private void stopSimulation(ActionEvent event) {
     if (timeline != null){
@@ -197,6 +217,10 @@ public class BattleController implements Initializable, GameObserver {
     }
   }
 
+  /**
+   * Reset the armies to their original states. The whole simulation
+   * will be reset.
+   */
   @FXML
   private void resetButtonPressed(){
     manager.resetBattle();
