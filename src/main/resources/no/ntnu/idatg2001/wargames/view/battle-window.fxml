@@ -7,7 +7,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -42,14 +45,85 @@
    <center>
       <VBox prefHeight="575.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="125.0" prefWidth="540.0" text="Battle">
+            <Label alignment="CENTER" prefHeight="110.0" prefWidth="540.0" text="Battle">
                <font>
                   <Font name="Copperplate Gothic Bold" size="51.0" />
                </font>
             </Label>
-            <Canvas height="300.0" width="540.0" />
-            <Button mnemonicParsing="false" onAction="#simulateBattle" prefHeight="33.0" prefWidth="113.0" text="Simulate" />
-            <ListView fx:id="battleListView" prefHeight="118.0" prefWidth="540.0" style="-fx-background-color: rgba(68,58,25,0.2); -fx-border-width: 2; -fx-border-color: #443A19; -fx-font-family: &quot;Copperplate Gothic Light&quot;; -fx-alignment: center;" styleClass="unitList" stylesheets="@../style/style.css" />
+            <Canvas height="270.0" width="540.0" />
+            <HBox prefHeight="77.0" prefWidth="540.0">
+               <children>
+                  <VBox prefHeight="62.0" prefWidth="149.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="14.0" prefWidth="171.0" text="Choose terrain:">
+                           <font>
+                              <Font name="Copperplate Gothic Light" size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="forestButton" mnemonicParsing="false" onAction="#terrainButtonPressed" prefHeight="45.0" prefWidth="45.0" styleClass="terrain-button" stylesheets="@../style/style.css">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/forest.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="50.0" text="Forest">
+                                       <font>
+                                          <Font name="Copperplate Gothic Light" size="11.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="hillButton" mnemonicParsing="false" onAction="#terrainButtonPressed" prefHeight="45.0" prefWidth="45.0" styleClass="terrain-button" stylesheets="@../style/style.css">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/hill.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="49.0" text="Hill">
+                                       <font>
+                                          <Font name="Copperplate Gothic Light" size="11.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="plainsButton" mnemonicParsing="false" onAction="#terrainButtonPressed" prefHeight="45.0" prefWidth="45.0" styleClass="terrain-button" stylesheets="@../style/style.css">
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/plains.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="52.0" text="Plains">
+                                       <font>
+                                          <Font name="Copperplate Gothic Light" size="11.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#simulateBattle" prefHeight="33.0" prefWidth="113.0" text="Simulate" />
+               </children>
+            </HBox>
+            <ListView fx:id="battleListView" prefHeight="118.0" prefWidth="547.0" style="-fx-background-color: rgba(68,58,25,0.2); -fx-border-width: 2; -fx-border-color: #443A19; -fx-font-family: &quot;Copperplate Gothic Light&quot;; -fx-alignment: center;" styleClass="unitList" stylesheets="@../style/style.css" />
          </children>
       </VBox>
    </center>

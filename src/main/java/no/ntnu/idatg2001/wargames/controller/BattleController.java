@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -33,10 +34,12 @@ import no.ntnu.idatg2001.wargames.view.ViewLoader;
  */
 public class BattleController implements Initializable, GameObserver {
 
+
   private GameManager manager;
   private Battle battle;
   private Timeline timeline;
   private ObservableList<String> messageList;
+  private Terrain terrain;
 
   // ----- JavaFX variables -----
   @FXML
@@ -45,6 +48,12 @@ public class BattleController implements Initializable, GameObserver {
   private VBox rightArmy;
   @FXML
   private ListView battleListView;
+  @FXML
+  private Button plainsButton;
+  @FXML
+  private Button hillButton;
+  @FXML
+  private Button forestButton;
 
 
   /**
@@ -126,5 +135,33 @@ public class BattleController implements Initializable, GameObserver {
   @Override
   public void updateState(String input) {
     //TODO: Input here!
+  }
+
+  @FXML
+  private void terrainButtonPressed(ActionEvent event) {
+    Button selectedButton = (Button) event.getSource();
+    switch (selectedButton.getId()){
+      case "hillButton":
+        terrain = Terrain.HILL;
+        break;
+      case "forestButton":
+        terrain = Terrain.FOREST;
+        break;
+      case "plainsButton":
+        terrain = Terrain.PLAINS;
+        break;
+      default:
+        terrain = null;
+        break;
+    }
+    resetTerrainButtonStyle();
+    selectedButton.setStyle("-fx-background-color: rgba(68,58,25,0.8)");
+
+  }
+
+  private void resetTerrainButtonStyle(){
+    for(Button button : new Button[]{hillButton,forestButton,plainsButton}){
+      button.setStyle("-fx-background-color: rgba(68,58,25,0.4)");
+    }
   }
 }

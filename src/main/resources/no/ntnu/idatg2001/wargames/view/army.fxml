@@ -10,14 +10,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="armyMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="230.0" style="-fx-background-color: rgba(68,58,25,0.4);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.wargames.controller.ArmyController">
+<VBox fx:id="armyMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="230.0" style="-fx-background-color: rgba(68,58,25,0.4); -fx-border-width: 2; -fx-border-color: #443A19;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatg2001.wargames.controller.ArmyController">
    <children>
-      <Label fx:id="armyNameLabel" alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="Army">
+      <Label fx:id="armyNameLabel" alignment="CENTER" prefHeight="73.0" prefWidth="226.0" text="Army">
          <font>
             <Font name="Copperplate Gothic Bold" size="18.0" />
          </font>
       </Label>
-      <Line endX="103.0" startX="-125.0" strokeWidth="2.0" />
+      <Line endX="100.0" startX="-125.0" strokeWidth="2.0" />
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="125.0">
          <children>
             <Label text="Infantry Unit(s): ">
@@ -91,7 +91,7 @@
             </Label>
          </children>
          <VBox.margin>
-            <Insets top="5.0" />
+            <Insets top="10.0" />
          </VBox.margin>
       </HBox>
       <Label alignment="BOTTOM_LEFT" prefHeight="20.0" prefWidth="180.0" text="Unit List:">
@@ -99,24 +99,24 @@
             <Font name="Copperplate Gothic Bold" size="11.0" />
          </font>
          <VBox.margin>
-            <Insets left="12.0" top="20.0" />
+            <Insets left="12.0" top="15.0" />
          </VBox.margin>
       </Label>
-      <TableView fx:id="armyTableView" prefHeight="265.0" prefWidth="240.0">
+      <TableView fx:id="armyTableView" prefHeight="192.0" prefWidth="230.0">
         <columns>
           <TableColumn fx:id="unitTypeColumn" prefWidth="65.0" text="Type" />
-          <TableColumn fx:id="unitNameColumn" prefWidth="115.0" text="Name" />
-            <TableColumn fx:id="unitHealthColumn" prefWidth="50.0" text="Health" />
+          <TableColumn fx:id="unitNameColumn" prefWidth="111.0" text="Name" />
+            <TableColumn fx:id="unitHealthColumn" prefWidth="53.33332824707031" text="Health" />
         </columns>
       </TableView>
-      <HBox alignment="CENTER" prefHeight="67.0" prefWidth="240.0">
+      <HBox alignment="CENTER" prefHeight="55.0" prefWidth="230.0">
          <children>
-            <Label fx:id="armyFileLabel" alignment="CENTER" prefHeight="50.0" prefWidth="120.0" text="Label">
+            <Label fx:id="armyFileLabel" alignment="CENTER" prefHeight="50.0" prefWidth="125.0" text="Label">
                <font>
                   <Font name="Copperplate Gothic Light" size="11.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadArmyButtonPressed" prefHeight="24.0" prefWidth="98.0" text="Load from file">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadArmyButtonPressed" prefHeight="24.0" prefWidth="96.0" style="-fx-border-width: 1; -fx-border-radius: 8;" styleClass="start-screen-button" stylesheets="@../style/style.css" text="Load from file">
                <font>
                   <Font name="Copperplate Gothic Light" size="10.0" />
                </font>
