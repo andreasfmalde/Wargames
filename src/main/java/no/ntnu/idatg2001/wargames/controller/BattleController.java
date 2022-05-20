@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -40,6 +42,7 @@ public class BattleController implements Initializable, GameObserver {
   private Timeline timeline;
   private ObservableList<String> messageList;
   private Terrain terrain;
+  private int simulationSpeed;
 
   // ----- JavaFX variables -----
   @FXML
@@ -47,13 +50,15 @@ public class BattleController implements Initializable, GameObserver {
   @FXML
   private VBox rightArmy;
   @FXML
-  private ListView battleListView;
+  private ListView<String> battleListView;
   @FXML
   private Button plainsButton;
   @FXML
   private Button hillButton;
   @FXML
   private Button forestButton;
+  @FXML
+  private Spinner<Integer> simulationSpinner;
 
 
   /**
@@ -77,6 +82,9 @@ public class BattleController implements Initializable, GameObserver {
     manager.addObserver(this);
     messageList = FXCollections.observableArrayList();
     battleListView.setItems(messageList);
+    SpinnerValueFactory<Integer> spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(5,120,80,5);
+    simulationSpinner.setValueFactory(spinnerFactory);
+    simulationSpeed = simulationSpinner.getValue();
   }
 
   /**
@@ -100,12 +108,13 @@ public class BattleController implements Initializable, GameObserver {
   @FXML
   private void simulateBattle(ActionEvent event) {
     try{
-      battle = manager.getBattle(Terrain.HILL);
-      timeline = new Timeline(new KeyFrame(Duration.millis(80),this::doStep));
+      simulationSpeed = simulationSpinner.getValue();
+      battle = manager.getBattle(terrain);
+      timeline = new Timeline(new KeyFrame(Duration.millis(simulationSpeed),this::doStep));
       timeline.setCycleCount(Animation.INDEFINITE);
       timeline.play();
 
-    }catch (IllegalStateException e){
+    }catch (IllegalStateException | IllegalArgumentException e){
       new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
     }
   }
@@ -162,6 +171,13 @@ public class BattleController implements Initializable, GameObserver {
   private void resetTerrainButtonStyle(){
     for(Button button : new Button[]{hillButton,forestButton,plainsButton}){
       button.setStyle("-fx-background-color: rgba(68,58,25,0.4)");
+    }
+  }
+
+  @FXML
+  private void stopSimulation(ActionEvent event) {
+    if (timeline != null){
+      timeline.stop();
     }
   }
 }
