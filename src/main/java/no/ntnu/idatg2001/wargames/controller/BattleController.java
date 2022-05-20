@@ -43,6 +43,7 @@ public class BattleController implements Initializable, GameObserver {
   private ObservableList<String> messageList;
   private Terrain terrain;
   private int simulationSpeed;
+  private boolean simulationRun;
 
   // ----- JavaFX variables -----
   @FXML
@@ -85,6 +86,7 @@ public class BattleController implements Initializable, GameObserver {
     SpinnerValueFactory<Integer> spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(5,120,80,5);
     simulationSpinner.setValueFactory(spinnerFactory);
     simulationSpeed = simulationSpinner.getValue();
+    simulationRun = false;
   }
 
   /**
@@ -107,15 +109,17 @@ public class BattleController implements Initializable, GameObserver {
    */
   @FXML
   private void simulateBattle(ActionEvent event) {
-    try{
-      simulationSpeed = simulationSpinner.getValue();
-      battle = manager.getBattle(terrain);
-      timeline = new Timeline(new KeyFrame(Duration.millis(simulationSpeed),this::doStep));
-      timeline.setCycleCount(Animation.INDEFINITE);
-      timeline.play();
-
-    }catch (IllegalStateException | IllegalArgumentException e){
-      new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
+    if(!simulationRun){
+      try{
+        simulationSpeed = simulationSpinner.getValue();
+        battle = manager.getBattle(terrain);
+        timeline = new Timeline(new KeyFrame(Duration.millis(simulationSpeed),this::doStep));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+        simulationRun = true;
+      }catch (IllegalStateException | IllegalArgumentException e){
+        new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
+      }
     }
   }
 
@@ -133,6 +137,7 @@ public class BattleController implements Initializable, GameObserver {
     // Stop the timeline loop if on of the armies have won
     if(battle.isThereAWinner()){
       timeline.stop();
+      timeline = null;
     }
 
   }
@@ -144,6 +149,16 @@ public class BattleController implements Initializable, GameObserver {
   @Override
   public void updateState(String input) {
     //TODO: Input here!
+  }
+
+  @Override
+  public void updateCopies() {
+
+  }
+
+  @Override
+  public void resetState() {
+
   }
 
   @FXML
@@ -178,6 +193,16 @@ public class BattleController implements Initializable, GameObserver {
   private void stopSimulation(ActionEvent event) {
     if (timeline != null){
       timeline.stop();
+      simulationRun = false;
     }
+  }
+
+  @FXML
+  private void resetButtonPressed(){
+    manager.resetBattle();
+    terrain = null;
+    resetTerrainButtonStyle();
+    messageList.clear();
+    simulationRun = false;
   }
 }

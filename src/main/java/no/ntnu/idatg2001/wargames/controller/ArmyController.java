@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import no.ntnu.idatg2001.wargames.model.GameManager;
 import no.ntnu.idatg2001.wargames.model.GameObserver;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
+import no.ntnu.idatg2001.wargames.model.unit.UnitFactory;
 import no.ntnu.idatg2001.wargames.utility.FileHandler;
 
 /**
@@ -31,6 +33,7 @@ import no.ntnu.idatg2001.wargames.utility.FileHandler;
 public class ArmyController implements Initializable, GameObserver {
 
   private Army army;
+  private Army armyCopy;
   private GameManager manager;
 
   // ----- JavaFX variables -----
@@ -123,4 +126,27 @@ public class ArmyController implements Initializable, GameObserver {
     armyTableView.refresh();
     displayUnitAmount();
   }
+
+  @Override
+  public void updateCopies() {
+    ObservableList<Unit> units = FXCollections.observableArrayList();
+    for(Unit unit : army.getAllUnits()){
+      units.add(UnitFactory.createUnit(unit.getClass().getSimpleName(),unit.getName(),unit.getHealth()));
+    }
+    armyCopy = new Army(army.getName(),units);
+  }
+
+  @Override
+  public void resetState() {
+    if(armyCopy != null){
+      manager.changeArmy(armyCopy,army);
+      army = armyCopy;
+      armyCopy = null;
+      armyTableView.setItems((ObservableList<Unit>) army.getAllUnits());
+      this.updateState("");
+    }
+
+  }
+
+
 }

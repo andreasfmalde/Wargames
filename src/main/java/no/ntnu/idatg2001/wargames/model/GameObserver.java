@@ -12,4 +12,8 @@ public interface GameObserver {
    * @param input Input string from the battle simulation
    */
   void updateState(String input);
+
+  void updateCopies();
+
+  void resetState();
 }

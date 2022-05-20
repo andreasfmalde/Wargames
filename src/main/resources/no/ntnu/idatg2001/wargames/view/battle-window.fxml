@@ -142,7 +142,7 @@
                         </Button>
                         <HBox>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" style="-fx-border-width: 2; -fx-border-radius: 10;" stylesheets="@../style/style.css" text="Reset">
+                              <Button mnemonicParsing="false" onAction="#resetButtonPressed" prefHeight="30.0" prefWidth="65.0" style="-fx-border-width: 2; -fx-border-radius: 10;" stylesheets="@../style/style.css" text="Reset">
                                  <font>
                                     <Font name="Copperplate Gothic Bold" size="12.0" />
                                  </font>
