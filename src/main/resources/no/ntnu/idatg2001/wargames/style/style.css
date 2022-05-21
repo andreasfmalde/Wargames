@@ -1,3 +1,14 @@
+/*
+    Stylesheet made by Andreas Follevaag Malde.
+    ============================================
+    Used for styling the War Games, JavaFX application.
+ */
+
+
+/*
+    Button styling to curve. Used mainly for the start screen
+    but also on a few other button.
+*/
 .start-screen-button{
     -fx-border-width: 3;
     -fx-border-color: #443A19;
@@ -5,16 +16,25 @@
     -fx-border-radius: 15;
     -fx-background-radius: 15;
 }
-
+/*
+    Hover effect when hovering the button
+*/
 .start-screen-button:hover{
     -fx-background-color: rgba(68,58,25,0.3);
     -fx-cursor: hand;
 }
+
+/*
+    Styling for the armyName text filed
+*/
 .armyName-textField{
     -fx-background-color: #443A19, #CCC1A5;
     -fx-background-insets: 0, 0 0 2 0;
     -fx-background-radius: 0;
 }
+/*
+    Styling the text fields to make units
+*/
 .unit-textField{
     -fx-background-color: #443A19, #A0977E;
     -fx-background-insets: 0, 0 0 2 0;
@@ -22,57 +42,87 @@
     -fx-font-family: "Copperplate Gothic Light" ;
 
 }
+
+/*
+    Style the combo box in the create army view
+ */
 .combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
     -fx-background-color: #A0977E ;
     -fx-text-fill: #443A19 ;
     -fx-font-family: "Copperplate Gothic Light" ;
 }
+
+/*
+    Hover effect when hovering the combobox options
+ */
 .combo-box .combo-box-popup .list-cell:hover {
     -fx-background-color: rgba(68,58,25,0.3) ;
 }
-
-
+/*
+    Styling the unit list view
+ */
 .unitList .list-cell {
     -fx-background-color: rgba(68,58,25,0) ;
     -fx-text-fill: #443A19 ;
     -fx-font-family: "Copperplate Gothic Light" ;
 }
+/*
+    Selected style in the unit list view
+ */
 .unitList .list-cell:selected {
     -fx-background-color: rgba(68,58,25,0.25) ;
     -fx-text-fill: #443A19 ;
     -fx-font-family: "Copperplate Gothic Light" ;
 }
 
+/*
+    Styling the terrain buttons
+ */
 .terrain-button{
     -fx-background-color:  rgba(68,58,25,0.4);
     -fx-border-width: 1;
     -fx-border-color: rgb(68,58,25);
 }
+/*
+    Hover effect of the terrain buttons
+ */
 .terrain-button:hover{
     -fx-cursor: hand;
     -fx-background-color: rgba(68,58,25,0.3);
 }
-
+/*
+    Hover effect on the stop simulation button
+ */
 .stop-button:hover{
     -fx-background-color: rgba(180,30,30,0.6);
     -fx-text-fill:White;
 }
+/*
+    Hover effect on the reset simulation button
+ */
 .reset-button:hover{
     -fx-background-color: rgba(40,130,40,0.7);
     -fx-text-fill:White;
 }
-
+/*
+    Styling the simulation spinner
+ */
 .simulation-spinner{
     -fx-base: rgba(68,58,25,0.3);
     -fx-font-family: "Copperplate Gothic Light";
     -fx-text-fill: White;
 }
 
-
+/*
+    Changing the background of the simulation graph
+ */
 .chart-plot-background{
     -fx-background-color: rgba(68,58,25,0.3);
 }
 
+/*
+    Changing color and text in the chart legend
+ */
 .chart-legend{
     -fx-background-color: rgba(0,0,0,0.1);
     -fx-font-family: "Copperplate Gothic Light";
