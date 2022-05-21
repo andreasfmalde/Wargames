@@ -104,11 +104,9 @@ public class BattleController implements Initializable, GameObserver {
     armyOneChart = new XYChart.Series<>();
     armyTwoChart = new XYChart.Series<>();
 
-    lineChart.getData().addAll(armyOneChart,armyTwoChart);
     lineChart.setVerticalGridLinesVisible(false);
     lineChart.setHorizontalGridLinesVisible(false);
     lineChart.setCreateSymbols(false);
-    //lineChart.getXAxis().setLabel("Attacks");
     ((NumberAxis)lineChart.getYAxis()).setLowerBound(0);
     lineChart.getYAxis().setAutoRanging(false);
   }
@@ -135,6 +133,7 @@ public class BattleController implements Initializable, GameObserver {
   private void simulateBattle(ActionEvent event) {
     if(!simulationRun){
       try{
+        lineChart.getData().addAll(armyOneChart,armyTwoChart);
         // Get the simulation speed value from the spinner
         simulationSpeed = simulationSpinner.getValue();
         ((NumberAxis)lineChart.getYAxis()).setUpperBound(getMaxUnitSize()+2.0);
@@ -247,6 +246,13 @@ public class BattleController implements Initializable, GameObserver {
     }
   }
 
+  private void resetGraph(){
+    lineChart.getData().clear();
+    armyOneChart.getData().clear();
+    armyTwoChart.getData().clear();
+
+  }
+
   /**
    * This button will stop the simulation if it hasn't finished yet.
    * @param event N/A
@@ -271,5 +277,6 @@ public class BattleController implements Initializable, GameObserver {
     messageList.clear();
     simulationRun = false;
     firstRun = false;
+    resetGraph();
   }
 }
