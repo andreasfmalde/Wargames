@@ -13,6 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -45,6 +48,7 @@ public class BattleController implements Initializable, GameObserver {
   private int simulationSpeed;
   private boolean simulationRun; // Keeping track of if the simulation has run, but is not finished
   private boolean firstRun; // Used to make sure copies of armies are only made at the start
+  private int counter;
 
   // ----- JavaFX variables -----
   @FXML
@@ -61,6 +65,12 @@ public class BattleController implements Initializable, GameObserver {
   private Button forestButton;
   @FXML
   private Spinner<Integer> simulationSpinner;
+
+  @FXML
+  private LineChart<String,Number> lineChart;
+
+  private XYChart.Series<String,Number> armyOneChart;
+  private XYChart.Series<String,Number> armyTwoChart;
 
 
   /**
@@ -89,6 +99,18 @@ public class BattleController implements Initializable, GameObserver {
     simulationSpeed = simulationSpinner.getValue();
     simulationRun = false;
     firstRun = false;
+    counter = 0;
+
+    armyOneChart = new XYChart.Series<>();
+    armyTwoChart = new XYChart.Series<>();
+
+    lineChart.getData().addAll(armyOneChart,armyTwoChart);
+    lineChart.setVerticalGridLinesVisible(false);
+    lineChart.setHorizontalGridLinesVisible(false);
+    lineChart.setCreateSymbols(false);
+    //lineChart.getXAxis().setLabel("Attacks");
+    ((NumberAxis)lineChart.getYAxis()).setLowerBound(0);
+    lineChart.getYAxis().setAutoRanging(false);
   }
 
   /**
@@ -115,6 +137,9 @@ public class BattleController implements Initializable, GameObserver {
       try{
         // Get the simulation speed value from the spinner
         simulationSpeed = simulationSpinner.getValue();
+        ((NumberAxis)lineChart.getYAxis()).setUpperBound(getMaxUnitSize()+2.0);
+        armyOneChart.setName(manager.getArmyOneName());
+        armyTwoChart.setName(manager.getArmyTwoName());
         // Get the battle with the two current armies
         if(!firstRun){
           battle = manager.getBattle(terrain);
@@ -132,6 +157,10 @@ public class BattleController implements Initializable, GameObserver {
     }
   }
 
+  private int getMaxUnitSize(){
+    return Math.max(manager.getArmyOneUnitSize(),manager.getArmyTwoUnitSize());
+  }
+
   /**
    * Method responsible to call battle class simulate step method and
    * sending update to the observer classes
@@ -143,11 +172,19 @@ public class BattleController implements Initializable, GameObserver {
     battleListView.scrollTo(messageList.size()-1);
     // Send update of the battle simulation step
     manager.updateObservers(battleMessage);
+    updateGraph();
     // Stop the timeline loop if on of the armies have won
     if(battle.isThereAWinner()){
       timeline.stop();
       timeline = null;
     }
+
+    counter ++;
+  }
+
+  private void updateGraph(){
+    armyOneChart.getData().add(new XYChart.Data<>(String.valueOf(counter), manager.getArmyOneUnitSize()));
+    armyTwoChart.getData().add(new XYChart.Data<>(String.valueOf(counter), manager.getArmyTwoUnitSize()));
 
   }
 

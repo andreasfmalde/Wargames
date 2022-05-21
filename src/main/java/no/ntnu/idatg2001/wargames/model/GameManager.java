@@ -128,6 +128,24 @@ public class GameManager {
 
   }
 
+  public int getArmyOneUnitSize(){
+    return armies.get(0).getAllUnits().size();
+  }
+
+
+
+  public int getArmyTwoUnitSize(){
+    return armies.get(1).getAllUnits().size();
+  }
+
+  public String getArmyOneName(){
+    return armies.get(0).getName();
+  }
+
+  public String getArmyTwoName(){
+    return armies.get(1).getName();
+  }
+
 
 
 
