@@ -24,6 +24,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import no.ntnu.idatg2001.wargames.Main;
 import no.ntnu.idatg2001.wargames.model.GameManager;
 import no.ntnu.idatg2001.wargames.model.GameObserver;
 import no.ntnu.idatg2001.wargames.model.Terrain;
@@ -44,6 +45,8 @@ public class BattleController implements Initializable, GameObserver {
   private Battle battle;
   private Timeline timeline;
   private ObservableList<String> messageList;
+  private XYChart.Series<String,Number> armyOneChart;
+  private XYChart.Series<String,Number> armyTwoChart;
   private Terrain terrain;
   private int simulationSpeed;
   private boolean simulationRun; // Keeping track of if the simulation has run, but is not finished
@@ -69,8 +72,6 @@ public class BattleController implements Initializable, GameObserver {
   @FXML
   private LineChart<String,Number> lineChart;
 
-  private XYChart.Series<String,Number> armyOneChart;
-  private XYChart.Series<String,Number> armyTwoChart;
 
 
   /**
@@ -82,6 +83,7 @@ public class BattleController implements Initializable, GameObserver {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     try {
+      // Add the army view to the battle screen
       Parent leftArmyNode = ViewLoader.getFXML("army").load();
       Parent rightArmyNode = ViewLoader.getFXML("army").load();
       leftArmy.getChildren().add(leftArmyNode);
@@ -94,16 +96,18 @@ public class BattleController implements Initializable, GameObserver {
     manager.addObserver(this);
     messageList = FXCollections.observableArrayList();
     battleListView.setItems(messageList);
+    // Setting spinner values. Range 5-120, initial value 80, step by 5
     SpinnerValueFactory<Integer> spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(5,120,80,5);
     simulationSpinner.setValueFactory(spinnerFactory);
     simulationSpeed = simulationSpinner.getValue();
     simulationRun = false;
     firstRun = false;
     counter = 0;
-
+    // Instantiate xy series used in the graph
     armyOneChart = new XYChart.Series<>();
     armyTwoChart = new XYChart.Series<>();
 
+    // Chart settings
     lineChart.setVerticalGridLinesVisible(false);
     lineChart.setHorizontalGridLinesVisible(false);
     lineChart.setCreateSymbols(false);
@@ -133,13 +137,15 @@ public class BattleController implements Initializable, GameObserver {
   private void simulateBattle(ActionEvent event) {
     if(!simulationRun){
       try{
-        lineChart.getData().addAll(armyOneChart,armyTwoChart);
         // Get the simulation speed value from the spinner
         simulationSpeed = simulationSpinner.getValue();
+        // Set upper bound on graph to the max amount of units in the battle + 2
         ((NumberAxis)lineChart.getYAxis()).setUpperBound(getMaxUnitSize()+2.0);
+        // Add the series to the line chart
+        lineChart.getData().addAll(armyOneChart,armyTwoChart);
         armyOneChart.setName(manager.getArmyOneName());
         armyTwoChart.setName(manager.getArmyTwoName());
-        // Get the battle with the two current armies
+        // Get  battle with the two current armies
         if(!firstRun){
           battle = manager.getBattle(terrain);
         }
@@ -156,6 +162,10 @@ public class BattleController implements Initializable, GameObserver {
     }
   }
 
+  /**
+   * Get the maximum amount of units in the battle
+   * @return The amount of units in the army with the most units
+   */
   private int getMaxUnitSize(){
     return Math.max(manager.getArmyOneUnitSize(),manager.getArmyTwoUnitSize());
   }
@@ -167,6 +177,7 @@ public class BattleController implements Initializable, GameObserver {
    */
   private void doStep(ActionEvent event){
     String battleMessage = battle.simulateStep();
+    // Show the attack message to the screen
     messageList.add(battleMessage);
     battleListView.scrollTo(messageList.size()-1);
     // Send update of the battle simulation step
@@ -177,10 +188,14 @@ public class BattleController implements Initializable, GameObserver {
       timeline.stop();
       timeline = null;
     }
-
+    // Update the counter for each iteration of the attack. Used in the graph view
     counter ++;
   }
 
+  /**
+   * Update the graph for each attack happening in the
+   * battle simulation
+   */
   private void updateGraph(){
     armyOneChart.getData().add(new XYChart.Data<>(String.valueOf(counter), manager.getArmyOneUnitSize()));
     armyTwoChart.getData().add(new XYChart.Data<>(String.valueOf(counter), manager.getArmyTwoUnitSize()));
@@ -246,6 +261,9 @@ public class BattleController implements Initializable, GameObserver {
     }
   }
 
+  /**
+   * Clear and reset the graph display
+   */
   private void resetGraph(){
     lineChart.getData().clear();
     armyOneChart.getData().clear();
@@ -278,5 +296,14 @@ public class BattleController implements Initializable, GameObserver {
     simulationRun = false;
     firstRun = false;
     resetGraph();
+  }
+
+  /**
+   * Close the application
+   * @param event N/A
+   */
+  @FXML
+  private void closeApplication(ActionEvent event) {
+    Main.exitApplication((Stage) leftArmy.getScene().getWindow());
   }
 }

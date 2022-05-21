@@ -18,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import no.ntnu.idatg2001.wargames.Main;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 import no.ntnu.idatg2001.wargames.model.unit.UnitFactory;
@@ -140,5 +141,14 @@ public class CreateArmyController implements Initializable {
       unitList.remove(unitToRemove);
     }
 
+  }
+
+  /**
+   * Close the application
+   * @param event N/A
+   */
+  @FXML
+  private void closeApplication(ActionEvent event) {
+    Main.exitApplication((Stage) unitName.getScene().getWindow());
   }
 }
