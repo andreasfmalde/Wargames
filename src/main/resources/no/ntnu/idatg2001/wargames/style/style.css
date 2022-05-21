@@ -128,3 +128,17 @@
     -fx-font-family: "Copperplate Gothic Light";
 }
 
+.menu-bar,.context-menu{
+    -fx-background-color: rgba(30,30,30,0.5);
+    -fx-font-family: "Copperplate Gothic Light";
+}
+
+
+.menu-bar .menu:hover, .menu-bar .menu-item:hover,.menu-bar .menu-item:focused,.menu-bar .menu:showing{
+    -fx-background-color: rgba(255,255,255,0.2);
+}
+
+
+
+
+
