@@ -1,6 +1,12 @@
 package no.ntnu.idatg2001.wargames.model.battle;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.ArrayList;
+import java.util.List;
 import no.ntnu.idatg2001.wargames.model.Terrain;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
@@ -66,6 +72,50 @@ class BattleTest {
     }
   }
 
+  /**
+   * Testing to make sure the battle constructor
+   * work as intended
+   */
+  @Test
+  void constructorTest(){
+    List<Army> armies = new ArrayList<>();
+    armies.add(humanArmy);
+    armies.add(orcishHorde);
+
+    try{
+      // Expecting battle constructor to succeed
+      new Battle(armies,Terrain.PLAINS);
+      assertTrue(true);
+    }catch (IllegalArgumentException e){
+      fail();
+    }
+
+    try{
+      // Expecting battle constructor to succeed
+      new Battle(humanArmy,orcishHorde,Terrain.FOREST);
+      assertTrue(true);
+    }catch (IllegalArgumentException e){
+      fail();
+    }
+
+    try{
+      // Expecting battle constructor to fail
+      new Battle(null,humanArmy,Terrain.FOREST);
+      fail();
+    }catch (IllegalArgumentException e){
+      assertEquals("Armies can not be null",e.getMessage());
+    }
+    // Adding a third army to the army list
+    armies.add(humanArmy);
+    try{
+      // Expecting battle constructor to fail
+      new Battle(armies,Terrain.FOREST);
+      fail();
+    }catch (IllegalArgumentException e){
+      assertEquals("There has to be two units in the list",e.getMessage());
+    }
+
+  }
 
   /**
    * Testing if the simulation method will make

@@ -1,5 +1,6 @@
 package no.ntnu.idatg2001.wargames.model.battle;
 
+import java.util.List;
 import java.util.Random;
 import no.ntnu.idatg2001.wargames.model.Terrain;
 import no.ntnu.idatg2001.wargames.model.army.Army;
@@ -33,6 +34,38 @@ public class Battle {
     }
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
+    // Set the terrain of the battle in both armies.
+    armyOne.setTerrain(terrain);
+    armyTwo.setTerrain(terrain);
+    random = new Random();
+  }
+
+  /**
+   * Constructor to initialize a new battle class
+   * taking in a list of armies and terrain as parameter
+   *
+   * @param armies A list of 2 army objects. It has to contain 2 objects.
+   * @param terrain Terrain of where the battle takes place
+   */
+  public Battle(List<Army> armies, Terrain terrain) {
+    // Check to make sure the list parameter is not null
+    if (armies == null){
+      throw new IllegalArgumentException("Army list can not be null");
+    }
+    // Making sure there are two armies in the list
+    if(armies.size() != 2){
+      throw new IllegalArgumentException("There has to be two units in the list");
+    }
+    // Making sure none of the armies are null
+    if (armies.get(0) == null || armies.get(1) == null) {
+      throw new IllegalArgumentException("Armies can not be null");
+    }
+
+    if (terrain == null) {
+      throw new IllegalArgumentException("Terrain can not be null.");
+    }
+    this.armyOne = armies.get(0);
+    this.armyTwo = armies.get(1);
     // Set the terrain of the battle in both armies.
     armyOne.setTerrain(terrain);
     armyTwo.setTerrain(terrain);
