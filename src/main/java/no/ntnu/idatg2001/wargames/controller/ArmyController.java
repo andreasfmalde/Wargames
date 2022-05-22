@@ -64,6 +64,9 @@ public class ArmyController implements Initializable, GameObserver {
       fileChooser.setInitialDirectory(new File(Path.of(".").toAbsolutePath().normalize().toString()));
       // Get an army file from the file system
       File armyFile = fileChooser.showOpenDialog(armyMainPane.getScene().getWindow());
+      if(armyFile == null){
+        throw new IllegalArgumentException("No file were found or selected.");
+      }
       // Make an army object from the file
       army = FileHandler.getArmyFromFile(armyFile);
       // Update the game manager of the newly selected army
@@ -82,13 +85,9 @@ public class ArmyController implements Initializable, GameObserver {
 
       // File name of the army file selected
       armyFileLabel.setText(armyFile.getName());
-    }catch (IOException e){
-      new Alert(Alert.AlertType.WARNING,e.getMessage()).showAndWait();
-    }catch (Exception e){
-      //TODO: Change this alert
+    }catch (IOException  | IllegalArgumentException e){
       new Alert(Alert.AlertType.WARNING,e.getMessage()).showAndWait();
     }
-
   }
 
   /**

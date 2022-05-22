@@ -22,7 +22,7 @@ public class Army {
   private String name;
   private List<Unit> units;
   private final Random random;
-  private final int MAX_AMOUNT_OF_UNITS = 200;
+  private static final int MAX_AMOUNT_OF_UNITS = 200;
 
 
   /**
@@ -83,6 +83,14 @@ public class Army {
    */
   public String getName(){
     return name;
+  }
+
+  /**
+   *
+   * @return the max limit of units the army can hold
+   */
+  public static int getMaxLimitOfUnits(){
+    return Army.MAX_AMOUNT_OF_UNITS;
   }
 
   /**

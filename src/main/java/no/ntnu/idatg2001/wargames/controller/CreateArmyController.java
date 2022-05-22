@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -42,6 +43,7 @@ public class CreateArmyController implements Initializable {
   @FXML private TextField unitHealth;
   @FXML private TextField unitName;
   @FXML private TextField armyName;
+  @FXML private Label unitCounter;
 
 
   /**
@@ -93,7 +95,11 @@ public class CreateArmyController implements Initializable {
       String name = unitName.getText();
       int health = Integer.parseInt(unitHealth.getText());
       int amount = Integer.parseInt(unitAmount.getText());
+      if(unitList.size() + amount > Army.getMaxLimitOfUnits()){
+        throw new IllegalArgumentException("Your total number of units will exceed the max limit of "+Army.getMaxLimitOfUnits());
+      }
       unitList.addAll(UnitFactory.createMultipleUnits(amount,unitType,name,health));
+      unitCounter.setText(String.valueOf(unitList.size()));
     }catch (NumberFormatException e){
       new Alert(Alert.AlertType.WARNING,"Insert a valid integer number").showAndWait();
     }catch (IllegalArgumentException e){
@@ -139,6 +145,7 @@ public class CreateArmyController implements Initializable {
       new Alert(Alert.AlertType.INFORMATION,"Please select a unit from the list to remove").showAndWait();
     }else{
       unitList.remove(unitToRemove);
+      unitCounter.setText(String.valueOf(unitList.size()));
     }
 
   }
@@ -163,5 +170,15 @@ public class CreateArmyController implements Initializable {
     Parent root = ViewLoader.getFXML("about-page").load();
     stage.setScene(new Scene(root));
     stage.show();
+  }
+
+  /**
+   * Remove all units in the unit list
+   * @param event N/A
+   */
+  @FXML
+  private void removeAllUnits(ActionEvent event) {
+    unitList.clear();
+    unitCounter.setText("0");
   }
 }
