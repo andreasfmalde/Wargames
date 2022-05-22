@@ -20,7 +20,7 @@ import no.ntnu.idatg2001.wargames.model.unit.units.RangedUnit;
 public class Army {
 
   private String name;
-  private List<Unit> units;
+  private final List<Unit> units;
   private final Random random;
   private static final int MAX_AMOUNT_OF_UNITS = 200;
 
@@ -97,7 +97,7 @@ public class Army {
    * @return A list of all infantry units in the unit list
    */
   public List<Unit> getInfantryUnits(){
-    return units.stream().filter(unit -> (unit instanceof InfantryUnit))
+    return units.stream().filter(InfantryUnit.class::isInstance)
         .collect(Collectors.toList());
   }
 
@@ -105,7 +105,7 @@ public class Army {
    * @return A list of all ranged units in the unit list
    */
   public List<Unit> getRangedUnits(){
-    return units.stream().filter(unit -> (unit instanceof RangedUnit))
+    return units.stream().filter(RangedUnit.class::isInstance)
         .collect(Collectors.toList());
   }
 
@@ -114,7 +114,7 @@ public class Army {
    */
   public List<Unit> getCavalryUnits(){
     return units.stream()
-        .filter(unit -> unit instanceof CavalryUnit)
+        .filter(CavalryUnit.class::isInstance)
         .filter(unit -> !(unit instanceof CommanderUnit))
         .collect(Collectors.toList());
   }
@@ -123,7 +123,7 @@ public class Army {
    * @return A list of all commander units in the unit list
    */
   public List<Unit> getCommanderUnits(){
-    return units.stream().filter(unit -> (unit instanceof CommanderUnit))
+    return units.stream().filter(CommanderUnit.class::isInstance)
         .collect(Collectors.toList());
 
   }

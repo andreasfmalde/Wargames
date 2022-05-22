@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -54,10 +53,9 @@ public class ArmyController implements Initializable, GameObserver {
    * Pressing the load army button will open a file choose to search for an
    * army file. Once a valid army file is chosen, the army view will be loaded
    * with all the information.
-   * @param actionEvent N/A
    */
   @FXML
-  private void loadArmyButtonPressed(ActionEvent actionEvent) {
+  private void loadArmyButtonPressed() {
     FileChooser fileChooser = new FileChooser();
     Army previousArmy = army;
     try{

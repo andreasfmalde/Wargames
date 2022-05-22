@@ -10,7 +10,7 @@ import no.ntnu.idatg2001.wargames.model.unit.Unit;
  * has a small resistance advantage in melee.
  *
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (09.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 public class CavalryUnit extends Unit {
 
@@ -67,6 +67,12 @@ public class CavalryUnit extends Unit {
     return 1 + getTerrainImpact()[1];
   }
 
+
+  /**
+   * Get the attack and defence impact from
+   * the terrain
+   * @return Int array where the first value is attack bonus and the last value is defence
+   */
   @Override
   public int[] getTerrainImpact(){
     if(this.getTerrain() == null){

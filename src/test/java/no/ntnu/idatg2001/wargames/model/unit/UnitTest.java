@@ -180,4 +180,43 @@ class UnitTest {
 
   }
 
+  /**
+   * Testing to make sure the getTerrainImpact method
+   * work as intended based on different terrain
+   */
+  @Test
+  void getTerrainImpact(){
+    // Infantry
+    assertEquals(0,infantry.getTerrainImpact()[0]);
+    assertEquals(0,infantry.getTerrainImpact()[1]);
+    // Ranged
+    assertEquals(2,ranged.getTerrainImpact()[0]);
+    assertEquals(0,ranged.getTerrainImpact()[1]);
+    // Cavalry
+    assertEquals(0,cavalry.getTerrainImpact()[0]);
+    assertEquals(0,cavalry.getTerrainImpact()[1]);
+    // Commander
+    assertEquals(0,commander.getTerrainImpact()[0]);
+    assertEquals(0,commander.getTerrainImpact()[1]);
+
+    //Changing terrain
+    infantry.setTerrain(Terrain.FOREST);
+    ranged.setTerrain(Terrain.FOREST);
+    cavalry.setTerrain(Terrain.FOREST);
+    commander.setTerrain(Terrain.FOREST);
+
+    // Infantry
+    assertEquals(2,infantry.getTerrainImpact()[0]);
+    assertEquals(2,infantry.getTerrainImpact()[1]);
+    // Ranged
+    assertEquals(0,ranged.getTerrainImpact()[0]);
+    assertEquals(-1,ranged.getTerrainImpact()[1]);
+    // Cavalry
+    assertEquals(0,cavalry.getTerrainImpact()[0]);
+    assertEquals(-1,cavalry.getTerrainImpact()[1]);
+    // Commander
+    assertEquals(0,commander.getTerrainImpact()[0]);
+    assertEquals(-1,commander.getTerrainImpact()[1]);
+  }
+
 }

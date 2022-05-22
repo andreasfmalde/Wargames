@@ -1,7 +1,6 @@
 package no.ntnu.idatg2001.wargames.controller;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,11 +23,10 @@ public class StartScreenController {
   /**
    * Method that will navigate the user to the change army
    * view
-   * @param event N/A
    * @throws IOException if no FXML file is found
    */
   @FXML
-  private void createArmyButtonPressed(ActionEvent event) throws IOException {
+  private void createArmyButtonPressed() throws IOException {
     Stage stage = (Stage) mainPane.getScene().getWindow();
     Parent root = ViewLoader.getFXML("create-army").load();
     stage.setScene(new Scene(root));
@@ -38,11 +36,10 @@ public class StartScreenController {
   /**
    * Method that will navigate the user to the battle simulation
    * view
-   * @param event N/A
    * @throws IOException if no FXML file is found
    */
   @FXML
-  private void battleSimulationButtonPressed(ActionEvent event) throws IOException {
+  private void battleSimulationButtonPressed() throws IOException {
     Stage stage = (Stage) mainPane.getScene().getWindow();
     Parent root = ViewLoader.getFXML("battle-window").load();
     stage.setScene(new Scene(root));
@@ -52,11 +49,10 @@ public class StartScreenController {
   /**
    * Method that will navigate the user to the "about"
    * view
-   * @param event N/A
    * @throws IOException if no FXML file is found
    */
   @FXML
-  private void aboutButtonPressed(ActionEvent event) throws IOException {
+  private void aboutButtonPressed() throws IOException {
     Stage stage =(Stage)mainPane.getScene().getWindow();
     Parent root = ViewLoader.getFXML("about-page").load();
     stage.setScene(new Scene(root));

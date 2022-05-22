@@ -1,5 +1,6 @@
 package no.ntnu.idatg2001.wargames.model.unit.units;
 
+import no.ntnu.idatg2001.wargames.model.Terrain;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 
 /**
@@ -9,7 +10,7 @@ import no.ntnu.idatg2001.wargames.model.unit.Unit;
  * also low on resistance if attacked.
  *
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (08.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 public class InfantryUnit extends Unit {
 
@@ -57,17 +58,20 @@ public class InfantryUnit extends Unit {
     return 1 + getTerrainImpact()[1];
   }
 
+  /**
+   * Get the attack and defence impact from
+   * the terrain
+   * @return Int array where the first value is attack bonus and the last value is defence
+   */
   @Override
   public int[] getTerrainImpact(){
     if(this.getTerrain() == null){
       return new int[]{0,0};
     }
-    switch (this.getTerrain()){
-      case FOREST:
-        return new int[]{2,2};
-      default:
-        return new int[]{0,0};
+    if (this.getTerrain() == Terrain.FOREST) {
+      return new int[] {2, 2};
     }
+    return new int[] {0, 0};
 
   }
 }

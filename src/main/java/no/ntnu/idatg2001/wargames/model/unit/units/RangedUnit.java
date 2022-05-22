@@ -9,7 +9,7 @@ import no.ntnu.idatg2001.wargames.model.unit.Unit;
  * The ability to resist an attack decreases over time until a limit is reached.
  *
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (08.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 public class RangedUnit extends Unit {
 
@@ -70,6 +70,11 @@ public class RangedUnit extends Unit {
     return 2 + getTerrainImpact()[1];
   }
 
+  /**
+   * Get the attack and defence impact from
+   * the terrain
+   * @return Int array where the first value is attack bonus and the last value is defence
+   */
   @Override
   public int[] getTerrainImpact(){
     if(this.getTerrain() == null){

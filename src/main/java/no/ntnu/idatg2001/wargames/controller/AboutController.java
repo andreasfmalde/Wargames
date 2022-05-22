@@ -3,7 +3,6 @@ package no.ntnu.idatg2001.wargames.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -38,20 +37,18 @@ public class AboutController implements Initializable {
 
   /**
    * Exit confirmation pop-up before closing the application
-   * @param event N/A
    */
   @FXML
-  private void closeButtonPressed(ActionEvent event) {
+  private void closeButtonPressed() {
     Main.exitApplication((Stage) aboutTextArea.getScene().getWindow());
   }
 
   /**
    * Change view to the create army view
-   * @param event N/A
    * @throws IOException if no FXML is found
    */
   @FXML
-  private void createArmyButtonPressed(ActionEvent event) throws IOException {
+  private void createArmyButtonPressed() throws IOException {
     Stage stage =(Stage)aboutTextArea.getScene().getWindow();
     Parent root = ViewLoader.getFXML("create-army").load();
     stage.setScene(new Scene(root));
@@ -60,11 +57,10 @@ public class AboutController implements Initializable {
 
   /**
    * Change view to the battle simulation view
-   * @param event N/A
    * @throws IOException if no FXML is found
    */
   @FXML
-  private void simulateButtonPressed(ActionEvent event) throws IOException {
+  private void simulateButtonPressed() throws IOException {
     Stage stage =(Stage)aboutTextArea.getScene().getWindow();
     Parent root = ViewLoader.getFXML("battle-window").load();
     stage.setScene(new Scene(root));
@@ -73,11 +69,10 @@ public class AboutController implements Initializable {
 
   /**
    * Changing screen view from the createArmy view to the start screen view
-   * @param event N/A
    * @throws IOException If no FXML file is found
    */
   @FXML
-  private void goBackButtonPressed(ActionEvent event) throws IOException {
+  private void goBackButtonPressed() throws IOException {
     Stage stage =(Stage)aboutTextArea.getScene().getWindow();
     Parent root = ViewLoader.getFXML("start-screen").load();
     stage.setScene(new Scene(root));

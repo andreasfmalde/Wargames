@@ -2,6 +2,7 @@ package no.ntnu.idatg2001.wargames;
 
 
 import java.io.IOException;
+import java.util.Objects;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,7 +40,8 @@ public class Main extends Application {
     stage.setTitle("War Games");
     stage.setScene(scene);
     stage.setResizable(false);
-    stage.getIcons().add(new Image(getClass().getResource("images/logo.png").toExternalForm()));
+    stage.getIcons().add(new Image(
+        Objects.requireNonNull(getClass().getResource("images/logo.png")).toExternalForm()));
 
     // When trying to exit the application the exit dialog will pop up
     stage.setOnCloseRequest(windowEvent -> {

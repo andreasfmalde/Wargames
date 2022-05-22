@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -63,10 +62,9 @@ public class CreateArmyController implements Initializable {
   /**
    * Creating a CSV file based on the army made in the createArmy view.
    * THe CSV file can be used later on the in battle simulation
-   * @param actionEvent N/A
    */
   @FXML
-  private void createArmy(ActionEvent actionEvent){
+  private void createArmy(){
     try{
       Army army = new Army(armyName.getText());
       army.addAll(unitList);
@@ -86,10 +84,9 @@ public class CreateArmyController implements Initializable {
   /**
    * Adding a unit to the unit list prior to making the army object.
    * The units in the unit list will become part of the army made
-   * @param actionEvent N/A
    */
   @FXML
-  private void addUnit(ActionEvent actionEvent){
+  private void addUnit(){
     try{
       String unitType = String.valueOf(typeComboBox.getValue());
       String name = unitName.getText();
@@ -109,11 +106,10 @@ public class CreateArmyController implements Initializable {
 
   /**
    * Changing screen view from the createArmy view to the battle simulation view
-   * @param actionEvent N/A
    * @throws IOException If no FXML file is found
    */
   @FXML
-  private void simulateBattlePressed(ActionEvent actionEvent) throws IOException {
+  private void simulateBattlePressed() throws IOException {
     Stage stage =(Stage)unitListView.getScene().getWindow();
     Parent root = ViewLoader.getFXML("battle-window").load();
     stage.setScene(new Scene(root));
@@ -122,11 +118,10 @@ public class CreateArmyController implements Initializable {
 
   /**
    * Changing screen view from the createArmy view to the start screen view
-   * @param event N/A
    * @throws IOException If no FXML file is found
    */
   @FXML
-  private void goBackButtonPressed(ActionEvent event) throws IOException {
+  private void goBackButtonPressed() throws IOException {
     Stage stage =(Stage)unitListView.getScene().getWindow();
     Parent root = ViewLoader.getFXML("start-screen").load();
     stage.setScene(new Scene(root));
@@ -136,10 +131,9 @@ public class CreateArmyController implements Initializable {
   /**
    * Deleting a selected unit from the unit list prior to making the army
    * object.
-   * @param event N/A
    */
   @FXML
-  private void deleteUnit(ActionEvent event) {
+  private void deleteUnit() {
     Unit unitToRemove =  unitListView.getSelectionModel().getSelectedItem();
     if(unitToRemove == null){
       new Alert(Alert.AlertType.INFORMATION,"Please select a unit from the list to remove").showAndWait();
@@ -152,20 +146,18 @@ public class CreateArmyController implements Initializable {
 
   /**
    * Close the application
-   * @param event N/A
    */
   @FXML
-  private void closeApplication(ActionEvent event) {
+  private void closeApplication() {
     Main.exitApplication((Stage) unitName.getScene().getWindow());
   }
 
   /**
    * Changing view to the "about" view
-   * @param event N/A
    * @throws IOException if no FXML is found
    */
   @FXML
-  private void aboutButtonPressed(ActionEvent event)throws IOException{
+  private void aboutButtonPressed()throws IOException{
     Stage stage =(Stage)unitName.getScene().getWindow();
     Parent root = ViewLoader.getFXML("about-page").load();
     stage.setScene(new Scene(root));
@@ -174,10 +166,9 @@ public class CreateArmyController implements Initializable {
 
   /**
    * Remove all units in the unit list
-   * @param event N/A
    */
   @FXML
-  private void removeAllUnits(ActionEvent event) {
+  private void removeAllUnits() {
     unitList.clear();
     unitCounter.setText("0");
   }

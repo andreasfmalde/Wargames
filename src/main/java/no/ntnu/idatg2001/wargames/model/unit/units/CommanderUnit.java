@@ -8,7 +8,7 @@ package no.ntnu.idatg2001.wargames.model.unit.units;
  * has a small resistance advantage in melee.
  *
  * @author Andreas Follevaag Malde
- * @version 1.0 - SNAPSHOT (09.02.2022)
+ * @version 1.0 - SNAPSHOT
  */
 public class CommanderUnit extends CavalryUnit{
   /**

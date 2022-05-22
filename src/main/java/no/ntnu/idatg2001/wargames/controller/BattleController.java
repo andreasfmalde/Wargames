@@ -50,6 +50,7 @@ public class BattleController implements Initializable {
   private int simulationSpeed;
   private boolean simulationRun; // Keeping track of if the simulation has run, but is not finished
   private boolean firstRun; // Used to make sure copies of armies are only made at the start
+  private boolean simulationFinished;
   private int counter;
 
   // ----- JavaFX variables -----
@@ -98,6 +99,7 @@ public class BattleController implements Initializable {
     simulationSpinner.setValueFactory(spinnerFactory);
     simulationSpeed = simulationSpinner.getValue();
     simulationRun = false;
+    simulationFinished = false;
     firstRun = false;
     counter = 0;
     // Instantiate xy series used in the graph
@@ -115,11 +117,10 @@ public class BattleController implements Initializable {
   /**
    * Changing the view from the battle view to the
    * create army view
-   * @param actionEvent N/A
    * @throws IOException If no view is found
    */
   @FXML
-  private void createArmyButtonPressed(ActionEvent actionEvent) throws IOException {
+  private void createArmyButtonPressed() throws IOException {
     Stage stage =(Stage)leftArmy.getScene().getWindow();
     Parent root = ViewLoader.getFXML("create-army").load();
     stage.setScene(new Scene(root));
@@ -128,11 +129,10 @@ public class BattleController implements Initializable {
 
   /**
    * Starting a simulation of a battle between two armies.
-   * @param event N/A
    */
   @FXML
-  private void simulateBattle(ActionEvent event) {
-    if(!simulationRun){
+  private void simulateBattle() {
+    if(!simulationRun && !simulationFinished){
       try{
         // Get the simulation speed value from the spinner
         simulationSpeed = simulationSpinner.getValue();
@@ -173,7 +173,7 @@ public class BattleController implements Initializable {
   /**
    * Method responsible to call battle class simulate step method and
    * sending update to the observer classes
-   * @param event N/A
+   * @param event Needs to be a parameter for the timeline to work
    */
   private void doStep(ActionEvent event){
     String battleMessage = battle.simulateStep();
@@ -186,8 +186,9 @@ public class BattleController implements Initializable {
     // Stop the timeline loop if on of the armies have won
     if(battle.isThereAWinner()){
       timeline.stop();
-      timeline = null;
+      simulationFinished = true;
       simulationRun = false;
+
     }
     // Update the counter for each iteration of the attack. Used in the graph view
     counter ++;
@@ -255,10 +256,9 @@ public class BattleController implements Initializable {
 
   /**
    * This button will stop the simulation if it hasn't finished yet.
-   * @param event N/A
    */
   @FXML
-  private void stopSimulation(ActionEvent event) {
+  private void stopSimulation() {
     if (timeline != null){
       timeline.stop();
       simulationRun = false;
@@ -277,6 +277,7 @@ public class BattleController implements Initializable {
       resetTerrainButtonStyle();
       messageList.clear();
       simulationRun = false;
+      simulationFinished = false;
       firstRun = false;
       resetGraph();
     }
@@ -285,11 +286,10 @@ public class BattleController implements Initializable {
 
   /**
    * Changing view to the "about" view
-   * @param event N/A
    * @throws IOException if no FXML is found
    */
   @FXML
-  private void aboutButtonPressed(ActionEvent event)throws IOException{
+  private void aboutButtonPressed()throws IOException{
     Stage stage =(Stage)leftArmy.getScene().getWindow();
     Parent root = ViewLoader.getFXML("about-page").load();
     stage.setScene(new Scene(root));
@@ -298,10 +298,9 @@ public class BattleController implements Initializable {
 
   /**
    * Close the application
-   * @param event N/A
    */
   @FXML
-  private void closeApplication(ActionEvent event) {
+  private void closeApplication() {
     Main.exitApplication((Stage) leftArmy.getScene().getWindow());
   }
 }
