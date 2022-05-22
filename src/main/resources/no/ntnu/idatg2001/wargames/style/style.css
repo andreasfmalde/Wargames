@@ -111,6 +111,9 @@
     -fx-base: rgba(68,58,25,0.3);
     -fx-font-family: "Copperplate Gothic Light";
     -fx-text-fill: White;
+    -fx-focus-color:transparent;
+    -fx-faint-focus-color:transparent;
+
 }
 
 /*

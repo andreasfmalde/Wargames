@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import no.ntnu.idatg2001.wargames.view.ViewLoader;
 
@@ -38,6 +39,7 @@ public class Main extends Application {
     stage.setTitle("War Games");
     stage.setScene(scene);
     stage.setResizable(false);
+    stage.getIcons().add(new Image(getClass().getResource("images/logo.png").toExternalForm()));
 
     // When trying to exit the application the exit dialog will pop up
     stage.setOnCloseRequest(windowEvent -> {
