@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.battle.Battle;
-
 /**
  * Game manager class working as a facade in the application.
  * Responsible to store and distribute information around the
@@ -97,7 +96,24 @@ public class GameManager {
     if(armies.size() != 2){
       throw new IllegalStateException("There has to be two armies in a battle");
     }
-     return new Battle(armies.get(0),armies.get(1),terrain);
+    // Send a message to all observers to make copies of armies, before the battle starts
+    for(GameObserver observer : observers){
+      observer.updateCopies();
+    }
+    return new Battle(armies.get(0),armies.get(1),terrain);
+  }
+
+
+  /**
+   * Distribute information to all observers to reset to
+   * original state
+   */
+  public void resetBattle(){
+    if(armies.size() == 2) {
+      for(GameObserver observer : observers){
+        observer.resetState();
+      }
+    }
   }
 
   /**
@@ -110,6 +126,39 @@ public class GameManager {
      observer.updateState(battleInfo);
     }
 
+  }
+
+  /**
+   *
+   * @return the amount of units in army one
+   */
+  public int getArmyOneUnitSize(){
+    return armies.get(0).getAllUnits().size();
+  }
+
+
+  /**
+   *
+   * @return the amount of units in army two
+   */
+  public int getArmyTwoUnitSize(){
+    return armies.get(1).getAllUnits().size();
+  }
+
+  /**
+   *
+   * @return army one name
+   */
+  public String getArmyOneName(){
+    return armies.get(0).getName();
+  }
+
+  /**
+   *
+   * @return army two name
+   */
+  public String getArmyTwoName(){
+    return armies.get(1).getName();
   }
 
 

@@ -96,7 +96,7 @@ public class Battle {
     }
     // String representation of which unit was the attacker, and the one attacked.
     // And a one line if/else statement to check if the unit died.
-    return attackingUnit.getName() + " attacked "+defendingUnit.getName()+"."+(unitDied?" The unit died.":"");
+    return attackingUnit.getName() + " attacked "+defendingUnit.getName()+"."+(unitDied?" "+defendingUnit.getName()+" died.":"");
   }
 
   /**

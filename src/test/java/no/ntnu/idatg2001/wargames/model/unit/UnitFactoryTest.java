@@ -100,7 +100,7 @@ class UnitFactoryTest {
       List<Unit> rangedUnits = UnitFactory.createMultipleUnits(2001,"RangedUnit","Ranged",100);
       fail();
     }catch (IllegalArgumentException e){
-      assertEquals("Your amount of 2001 units are above the maximum limit of 2000 units to create",e.getMessage());
+      assertEquals("Your amount of 2001 units are above the maximum limit of 200 units to create",e.getMessage());
     }
 
     // If a negative amount of units is entered, 0 units will be returned.

@@ -12,4 +12,16 @@ public interface GameObserver {
    * @param input Input string from the battle simulation
    */
   void updateState(String input);
+
+  /**
+   * Update copies method will be called in each game
+   * observer to update their copies
+   */
+  void updateCopies();
+
+  /**
+   * Reset state method will be called in each game
+   * observer to reset their state
+   */
+  void resetState();
 }

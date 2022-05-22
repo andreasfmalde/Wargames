@@ -56,7 +56,10 @@ public class StartScreenController {
    * @throws IOException if no FXML file is found
    */
   @FXML
-  private void aboutButtonPressed(ActionEvent event) {
-    //TODO: IMPLEMENT ABOUT PAGE
+  private void aboutButtonPressed(ActionEvent event) throws IOException {
+    Stage stage =(Stage)mainPane.getScene().getWindow();
+    Parent root = ViewLoader.getFXML("about-page").load();
+    stage.setScene(new Scene(root));
+    stage.show();
   }
 }
