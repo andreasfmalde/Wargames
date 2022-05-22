@@ -138,7 +138,20 @@
     -fx-background-color: rgba(255,255,255,0.2);
 }
 
-
-
-
+.table-view {
+    -fx-font-family: "Copperplate Gothic Light";
+    -fx-background-color: rgba(68,58,25,0.6);
+    -fx-text-fill: White;
+    -fx-alignment: center;
+}
+.table-view .table-column{
+    -fx-alignment: center;
+    -fx-font-size: 10;
+}
+.table-view .column-header{
+    -fx-background-color: rgba(68,58,25,0.7);
+}
+.table-cell{
+    -fx-background-color: rgba(68,58,25,0.6)
+}
 

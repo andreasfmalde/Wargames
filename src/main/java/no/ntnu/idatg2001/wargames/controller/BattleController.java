@@ -141,8 +141,6 @@ public class BattleController implements Initializable, GameObserver {
         simulationSpeed = simulationSpinner.getValue();
         // Set upper bound on graph to the max amount of units in the battle + 2
         ((NumberAxis)lineChart.getYAxis()).setUpperBound(getMaxUnitSize()+2.0);
-        // Add the series to the line chart
-        lineChart.getData().addAll(armyOneChart,armyTwoChart);
         armyOneChart.setName(manager.getArmyOneName());
         armyTwoChart.setName(manager.getArmyTwoName());
         // Get  battle with the two current armies
@@ -150,6 +148,8 @@ public class BattleController implements Initializable, GameObserver {
           battle = manager.getBattle(terrain);
         }
         firstRun = true;
+        // Add the series to the line chart
+        lineChart.getData().addAll(armyOneChart,armyTwoChart);
         // Start a simulation loop, stepping through each attack
         timeline = new Timeline(new KeyFrame(Duration.millis(simulationSpeed),this::doStep));
         timeline.setCycleCount(Animation.INDEFINITE);

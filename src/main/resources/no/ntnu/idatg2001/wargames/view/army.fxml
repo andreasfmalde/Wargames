@@ -102,11 +102,11 @@
             <Insets left="12.0" top="15.0" />
          </VBox.margin>
       </Label>
-      <TableView fx:id="armyTableView" prefHeight="192.0" prefWidth="230.0">
+      <TableView fx:id="armyTableView" editable="true" focusTraversable="false" prefHeight="184.0" prefWidth="251.0" stylesheets="@../style/style.css">
         <columns>
-          <TableColumn fx:id="unitTypeColumn" prefWidth="65.0" text="Type" />
-          <TableColumn fx:id="unitNameColumn" prefWidth="111.0" text="Name" />
-            <TableColumn fx:id="unitHealthColumn" prefWidth="53.33332824707031" text="Health" />
+          <TableColumn fx:id="unitTypeColumn" prefWidth="70.0" text="Type" />
+          <TableColumn fx:id="unitNameColumn" prefWidth="106.0" text="Name" />
+            <TableColumn fx:id="unitHealthColumn" prefWidth="57.0" text="Health" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" prefHeight="55.0" prefWidth="230.0">
