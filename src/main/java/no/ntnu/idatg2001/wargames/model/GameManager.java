@@ -3,7 +3,6 @@ package no.ntnu.idatg2001.wargames.model;
 import java.util.ArrayList;
 import java.util.List;
 import no.ntnu.idatg2001.wargames.model.army.Army;
-import no.ntnu.idatg2001.wargames.model.battle.Battle;
 /**
  * Game manager class working as a facade in the application.
  * Responsible to store and distribute information around the
@@ -79,20 +78,12 @@ public class GameManager {
     observers.add(observer);
   }
 
-  /**
-   * Delete observer from the observer list
-   * @param observer Observer to delete
-   */
-  public void deleteObserver(GameObserver observer){
-    observers.remove(observer);
-  }
 
   /**
-   * Get a battle of the two armies in the army list of the game manager
-   * @param terrain Terrain where the battle will take place
-   * @return A battle object
+   * Get a list of the two battling armies in the army list of the game manager
+   * @return A list of two armies
    */
-  public Battle getBattle(Terrain terrain){
+  public List<Army> getBattlingArmies(){
     if(armies.size() != 2){
       throw new IllegalStateException("There has to be two armies in a battle");
     }
@@ -100,7 +91,7 @@ public class GameManager {
     for(GameObserver observer : observers){
       observer.updateCopies();
     }
-    return new Battle(armies.get(0),armies.get(1),terrain);
+    return armies;
   }
 
 
@@ -160,8 +151,6 @@ public class GameManager {
   public String getArmyTwoName(){
     return armies.get(1).getName();
   }
-
-
 
 
 }

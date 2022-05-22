@@ -26,7 +26,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import no.ntnu.idatg2001.wargames.Main;
 import no.ntnu.idatg2001.wargames.model.GameManager;
-import no.ntnu.idatg2001.wargames.model.GameObserver;
 import no.ntnu.idatg2001.wargames.model.Terrain;
 import no.ntnu.idatg2001.wargames.model.battle.Battle;
 import no.ntnu.idatg2001.wargames.view.ViewLoader;
@@ -38,7 +37,7 @@ import no.ntnu.idatg2001.wargames.view.ViewLoader;
  * @author Andreas Follevaag Malde
  * @version 1.0 - SNAPSHOT
  */
-public class BattleController implements Initializable, GameObserver {
+public class BattleController implements Initializable {
 
 
   private GameManager manager;
@@ -92,8 +91,6 @@ public class BattleController implements Initializable, GameObserver {
       e.printStackTrace();
     }
     manager = GameManager.getInstance();
-    // Adding battle controller as a game observer
-    manager.addObserver(this);
     messageList = FXCollections.observableArrayList();
     battleListView.setItems(messageList);
     // Setting spinner values. Range 5-120, initial value 80, step by 5
@@ -145,11 +142,14 @@ public class BattleController implements Initializable, GameObserver {
         armyTwoChart.setName(manager.getArmyTwoName());
         // Get  battle with the two current armies
         if(!firstRun){
-          battle = manager.getBattle(terrain);
+          battle = new Battle(manager.getBattlingArmies(),terrain);
         }
         firstRun = true;
         // Add the series to the line chart
-        lineChart.getData().addAll(armyOneChart,armyTwoChart);
+        if(lineChart.getData().isEmpty()){
+          lineChart.getData().add(armyOneChart);
+          lineChart.getData().add(armyTwoChart);
+        }
         // Start a simulation loop, stepping through each attack
         timeline = new Timeline(new KeyFrame(Duration.millis(simulationSpeed),this::doStep));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -187,6 +187,7 @@ public class BattleController implements Initializable, GameObserver {
     if(battle.isThereAWinner()){
       timeline.stop();
       timeline = null;
+      simulationRun = false;
     }
     // Update the counter for each iteration of the attack. Used in the graph view
     counter ++;
@@ -199,25 +200,6 @@ public class BattleController implements Initializable, GameObserver {
   private void updateGraph(){
     armyOneChart.getData().add(new XYChart.Data<>(String.valueOf(counter), manager.getArmyOneUnitSize()));
     armyTwoChart.getData().add(new XYChart.Data<>(String.valueOf(counter), manager.getArmyTwoUnitSize()));
-
-  }
-
-  /**
-   * Update the battle controller based on new battle information.
-   * @param input Input string from the battle simulation
-   */
-  @Override
-  public void updateState(String input) {
-    //TODO: Input here!
-  }
-
-  @Override
-  public void updateCopies() {
-
-  }
-
-  @Override
-  public void resetState() {
 
   }
 
@@ -289,13 +271,16 @@ public class BattleController implements Initializable, GameObserver {
    */
   @FXML
   private void resetButtonPressed(){
-    manager.resetBattle();
-    terrain = null;
-    resetTerrainButtonStyle();
-    messageList.clear();
-    simulationRun = false;
-    firstRun = false;
-    resetGraph();
+    if(!simulationRun){
+      manager.resetBattle();
+      terrain = null;
+      resetTerrainButtonStyle();
+      messageList.clear();
+      simulationRun = false;
+      firstRun = false;
+      resetGraph();
+    }
+
   }
 
   /**
