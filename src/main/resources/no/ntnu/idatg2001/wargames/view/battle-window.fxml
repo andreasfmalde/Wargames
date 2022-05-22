@@ -39,6 +39,11 @@
               <MenuItem mnemonicParsing="false" text="Simulate" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="About">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#aboutButtonPressed" text="FAQ" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

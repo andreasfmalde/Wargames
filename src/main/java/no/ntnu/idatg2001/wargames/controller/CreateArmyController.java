@@ -70,7 +70,7 @@ public class CreateArmyController implements Initializable {
       army.addAll(unitList);
       FileChooser chooser = new FileChooser();
       chooser.setInitialFileName(armyName.getText().replace(" ","-"));
-      chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("*.csv","Comma Separated File"));
+      chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Comma Separated File","*.csv"));
       chooser.setInitialDirectory( new File(Paths.get(".").toAbsolutePath().normalize().toString()));
       File file = chooser.showSaveDialog(armyName.getScene().getWindow());
       if(file != null){
@@ -150,5 +150,14 @@ public class CreateArmyController implements Initializable {
   @FXML
   private void closeApplication(ActionEvent event) {
     Main.exitApplication((Stage) unitName.getScene().getWindow());
+  }
+
+
+  @FXML
+  private void aboutButtonPressed(ActionEvent event)throws IOException{
+    Stage stage =(Stage)unitName.getScene().getWindow();
+    Parent root = ViewLoader.getFXML("about-page").load();
+    stage.setScene(new Scene(root));
+    stage.show();
   }
 }

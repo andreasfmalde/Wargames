@@ -159,6 +159,11 @@
               <MenuItem mnemonicParsing="false" onAction="#simulateBattlePressed" text="Simulate" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="About">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#aboutButtonPressed" text="FAQ" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
