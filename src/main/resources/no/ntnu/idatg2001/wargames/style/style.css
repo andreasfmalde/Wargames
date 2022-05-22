@@ -171,6 +171,21 @@
     Setting background color of each cell in the table view
  */
 .table-cell{
-    -fx-background-color: rgba(68,58,25,0.6)
+    -fx-background-color: rgba(68,58,25,0.6);
+}
+
+/*
+    Getting rid of the blue focus color on the about text area
+ */
+.text-area{
+    -fx-focus-color:transparent;
+    -fx-faint-focus-color:transparent;
+}
+/*
+    Changing the background of the about text area to fit the color theme
+    of the application
+ */
+.text-area .content{
+    -fx-background-color: rgba(68,58,25,0.5);
 }
 
