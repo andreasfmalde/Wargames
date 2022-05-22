@@ -298,6 +298,11 @@ public class BattleController implements Initializable, GameObserver {
     resetGraph();
   }
 
+  /**
+   * Changing view to the "about" view
+   * @param event N/A
+   * @throws IOException if no FXML is found
+   */
   @FXML
   private void aboutButtonPressed(ActionEvent event)throws IOException{
     Stage stage =(Stage)leftArmy.getScene().getWindow();

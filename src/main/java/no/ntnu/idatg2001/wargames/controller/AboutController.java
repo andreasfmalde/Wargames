@@ -10,16 +10,31 @@ import javafx.stage.Stage;
 import no.ntnu.idatg2001.wargames.Main;
 import no.ntnu.idatg2001.wargames.view.ViewLoader;
 
+/**
+ * Controller class for the "about/FAQ" view of the
+ * application. Handling all button event on screen.
+ * @author Andreas Follevaag Malde
+ * @version 1.0 - SNAPSHOT
+ */
 public class AboutController {
 
 
   @FXML private Label headLine;
 
+  /**
+   * Exit confirmation pop-up before closing the application
+   * @param event N/A
+   */
   @FXML
   private void closeButtonPressed(ActionEvent event) {
     Main.exitApplication((Stage) headLine.getScene().getWindow());
   }
 
+  /**
+   * Change view to the create army view
+   * @param event N/A
+   * @throws IOException if no FXML is found
+   */
   @FXML
   private void createArmyButtonPressed(ActionEvent event) throws IOException {
     Stage stage =(Stage)headLine.getScene().getWindow();
@@ -28,6 +43,11 @@ public class AboutController {
     stage.show();
   }
 
+  /**
+   * Change view to the battle simulation view
+   * @param event N/A
+   * @throws IOException if no FXML is found
+   */
   @FXML
   private void simulateButtonPressed(ActionEvent event) throws IOException {
     Stage stage =(Stage)headLine.getScene().getWindow();
