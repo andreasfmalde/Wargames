@@ -128,29 +128,48 @@
     -fx-font-family: "Copperplate Gothic Light";
 }
 
+/*
+    Changing color and font and the menu bar
+ */
 .menu-bar,.context-menu{
     -fx-background-color: rgba(30,30,30,0.5);
     -fx-font-family: "Copperplate Gothic Light";
 }
 
-
+/*
+    Changing color when hovering and focusing on items on the menu bar
+ */
 .menu-bar .menu:hover, .menu-bar .menu-item:hover,.menu-bar .menu-item:focused,.menu-bar .menu:showing{
     -fx-background-color: rgba(255,255,255,0.2);
 }
 
+/*
+    Styling the table views in the army controllers
+ */
 .table-view {
     -fx-font-family: "Copperplate Gothic Light";
     -fx-background-color: rgba(68,58,25,0.6);
     -fx-text-fill: White;
     -fx-alignment: center;
 }
+
+/*
+    Changing fontsize and alignment on values in the table columns
+ */
 .table-view .table-column{
     -fx-alignment: center;
     -fx-font-size: 10;
 }
+/*
+    Styling the column headers
+ */
 .table-view .column-header{
     -fx-background-color: rgba(68,58,25,0.7);
 }
+
+/*
+    Setting background color of each cell in the table view
+ */
 .table-cell{
     -fx-background-color: rgba(68,58,25,0.6)
 }
