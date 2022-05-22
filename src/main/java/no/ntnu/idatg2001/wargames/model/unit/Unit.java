@@ -105,7 +105,10 @@ public abstract class Unit {
    */
   public void setHealth(int health) {
     if(health < 0){
-      throw new IllegalArgumentException("Health can not be less than 0");
+      throw new IllegalArgumentException("Unit health can not be less than 0");
+    }
+    if(health > 500){
+      throw new IllegalArgumentException("Unit health can not be more than 500");
     }
     this.health = health;
   }
