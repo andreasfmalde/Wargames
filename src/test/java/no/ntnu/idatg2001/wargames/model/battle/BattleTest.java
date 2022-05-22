@@ -27,8 +27,8 @@ import org.junit.jupiter.api.Test;
  */
 class BattleTest {
 
-  Army humanArmy;
-  Army orcishHorde;
+  private Army humanArmy;
+  private Army orcishHorde;
 
   /**
    * Before each test this initialization method
@@ -47,7 +47,7 @@ class BattleTest {
     Unit grunt = new InfantryUnit("Grunt",100);
     Unit raider = new CavalryUnit("Raider",100);
     Unit spearMan = new RangedUnit("Spearman",100);
-    Unit guldan = new CommanderUnit("Gul'dan",180);
+    Unit spider = new CommanderUnit("Spider",180);
     orcishHorde = new Army("Orcish horde");
 
     for(int i = 0;i<100;i++){
@@ -67,7 +67,7 @@ class BattleTest {
       if(i<1){
         // Adding 1 commander unit in both armies.
         humanArmy.add(mountainKing);
-        orcishHorde.add(guldan);
+        orcishHorde.add(spider);
       }
     }
   }

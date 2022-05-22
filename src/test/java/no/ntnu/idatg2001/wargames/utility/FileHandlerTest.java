@@ -74,7 +74,7 @@ class FileHandlerTest {
     // Testing to make sure an army object will not be created if there
     // are no file with the specified filename,
     try{
-      Army failArmy = FileHandler.getArmyFromFile(new File("NotAFile"));
+      FileHandler.getArmyFromFile(new File("NotAFile"));
       fail();
     }catch (IOException e){
       assertTrue(true);
@@ -82,7 +82,7 @@ class FileHandlerTest {
 
     // Throwing exception if the file format is not how it should be
     try{
-      Army failArmy = FileHandler.getArmyFromFile(new File("src/main/resources/armyFiles/fail.csv"));
+      FileHandler.getArmyFromFile(new File("src/main/resources/armyFiles/fail.csv"));
       fail();
     }catch (IOException e){
       assertEquals("[FORMAT ERROR] There are not three unit values on the unit line",e.getMessage());

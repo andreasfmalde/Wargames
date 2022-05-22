@@ -135,17 +135,20 @@ class ArmyTest {
     assertEquals(200,swedishArmy.getAllUnits().size());
 
     // Expecting an exception when trying to add one more unit to the army
+    Unit unitForTesting = new CommanderUnit("Commander1", 200);
     try {
-      swedishArmy.add(new CommanderUnit("Commander1", 200));
+      swedishArmy.add(unitForTesting);
       fail();
     }catch (IllegalArgumentException e){
       assertEquals("Can not add unit. Maximum amount of 200 is reached",e.getMessage());
     }
+    // Adding some extra units to the list beforehand
+    unitForTesting = new InfantryUnit("The infantry",135);
+    for(int i = 0; i< 10;i++){
+      norwegianArmy.add(unitForTesting);
+    }
     // Expecting an exception when trying to add a list of units that will surpass the max amount limit
     try{
-      for(int i = 0; i< 10;i++){
-        norwegianArmy.add(new InfantryUnit("The infantry",135));
-      }
       norwegianArmy.addAll(lotsOfUnits);
       fail();
     }catch (IllegalArgumentException e){
@@ -175,8 +178,9 @@ class ArmyTest {
     assertEquals(3,norwegianArmy.getAllUnits().size());
 
     // should not be able to remove a unit not in the list
+    Unit unitNotInList = new CommanderUnit("not a unit in the list",10);
     try{
-      norwegianArmy.remove(new CommanderUnit("not a unit in the list",10));
+      norwegianArmy.remove(unitNotInList);
       fail();
     }catch (IllegalArgumentException e ){
       assertEquals("The unit is not in the list",e.getMessage());

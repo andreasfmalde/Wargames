@@ -55,7 +55,7 @@ class UnitFactoryTest {
   void createUnitExceptionHandlingTest(){
     //Expecting exception when type parameter is invalid
     try{
-      Unit failUnit = UnitFactory.createUnit("NotAType","Name",200);
+      UnitFactory.createUnit("NotAType","Name",200);
       fail();
     }catch (IllegalArgumentException e){
       assertEquals("Illegal unit type in parameter...",e.getMessage());
@@ -63,10 +63,10 @@ class UnitFactoryTest {
 
     // Expecting exception when name or health in unit is invalid
     try{
-      Unit anotherFailUnit = UnitFactory.createUnit("InfantryUnit","Name",-200);
+      UnitFactory.createUnit("InfantryUnit","Name",-200);
       fail();
     }catch (IllegalArgumentException e){
-      assertEquals("Health can not be less than 0",e.getMessage());
+      assertEquals("Unit health can not be less than 0",e.getMessage());
     }
   }
 
@@ -97,7 +97,7 @@ class UnitFactoryTest {
   void createMultipleUnitsExceptionHandlingTest(){
     // Maximum amount of units to create is 2000.
     try{
-      List<Unit> rangedUnits = UnitFactory.createMultipleUnits(2001,"RangedUnit","Ranged",100);
+      UnitFactory.createMultipleUnits(2001,"RangedUnit","Ranged",100);
       fail();
     }catch (IllegalArgumentException e){
       assertEquals("Your amount of 2001 units are above the maximum limit of 200 units to create",e.getMessage());

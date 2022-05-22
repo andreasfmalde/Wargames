@@ -19,10 +19,10 @@ import org.junit.jupiter.api.Test;
  */
 class UnitTest {
 
-  Unit infantry;
-  Unit ranged;
-  Unit cavalry;
-  Unit commander;
+  private Unit infantry;
+  private Unit ranged;
+  private Unit cavalry;
+  private Unit commander;
 
   /**
    * Initialization method to initialize an
@@ -68,7 +68,7 @@ class UnitTest {
       new RangedUnit("another",-10,10,30);
       fail();
     }catch (IllegalArgumentException e){
-      assertEquals("Health can not be less than 0",e.getMessage());
+      assertEquals("Unit health can not be less than 0",e.getMessage());
     }
 
     // Cavalry
