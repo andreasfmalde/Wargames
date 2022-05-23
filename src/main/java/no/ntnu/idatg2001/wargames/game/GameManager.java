@@ -12,7 +12,7 @@ import no.ntnu.idatg2001.wargames.model.army.Army;
  */
 public class GameManager {
 
-  private static volatile GameManager instance;
+  private static volatile GameManager instance; // Not fully threadsafe yet, but works for us since we don't use threads in the program
 
   private final List<Army> armies;
   private final List<GameObserver> observers;
@@ -117,6 +117,20 @@ public class GameManager {
      observer.updateState(battleInfo);
     }
 
+  }
+
+  /**
+   * Get the name of the army with units left. If both have units left or
+   * none have units left, "" will be returned
+   * @return Name of the winning army
+   */
+  public String getUnitWithArmiesLeft(){
+    if (armies.get(0).hasUnits() && !armies.get(1).hasUnits()){
+      return getArmyOneName();
+    }else if (armies.get(1).hasUnits() && !armies.get(0).hasUnits()){
+      return getArmyTwoName();
+    }
+    return "";
   }
 
   /**

@@ -18,6 +18,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -68,6 +69,10 @@ public class BattleController implements Initializable {
   private Button forestButton;
   @FXML
   private Spinner<Integer> simulationSpinner;
+  @FXML
+  private Label winnerLabel;
+  @FXML
+  private Label winnerText;
 
   @FXML
   private LineChart<String,Number> lineChart;
@@ -188,6 +193,8 @@ public class BattleController implements Initializable {
       timeline.stop();
       simulationFinished = true;
       simulationRun = false;
+      winnerLabel.setText(manager.getUnitWithArmiesLeft());
+      winnerText.setText("Winner:");
 
     }
     // Update the counter for each iteration of the attack. Used in the graph view
@@ -279,6 +286,8 @@ public class BattleController implements Initializable {
       simulationRun = false;
       simulationFinished = false;
       firstRun = false;
+      winnerLabel.setText("");
+      winnerText.setText("");
       resetGraph();
     }
 
