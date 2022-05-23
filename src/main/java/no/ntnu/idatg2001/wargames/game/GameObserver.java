@@ -1,4 +1,4 @@
-package no.ntnu.idatg2001.wargames.model;
+package no.ntnu.idatg2001.wargames.game;
 
 /**
  * Interface to represent the game observers

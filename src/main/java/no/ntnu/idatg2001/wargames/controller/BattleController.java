@@ -25,8 +25,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import no.ntnu.idatg2001.wargames.Main;
-import no.ntnu.idatg2001.wargames.model.GameManager;
-import no.ntnu.idatg2001.wargames.model.Terrain;
+import no.ntnu.idatg2001.wargames.game.GameManager;
+import no.ntnu.idatg2001.wargames.game.Terrain;
 import no.ntnu.idatg2001.wargames.model.battle.Battle;
 import no.ntnu.idatg2001.wargames.view.ViewLoader;
 

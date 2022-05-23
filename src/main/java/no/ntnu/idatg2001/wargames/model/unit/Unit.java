@@ -1,7 +1,7 @@
 package no.ntnu.idatg2001.wargames.model.unit;
 
 import java.util.Objects;
-import no.ntnu.idatg2001.wargames.model.Terrain;
+import no.ntnu.idatg2001.wargames.game.Terrain;
 
 /**
  * An abstract class that represents a unit.

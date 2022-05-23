@@ -10,5 +10,5 @@ module no.ntnu.idatg.wargames {
   exports no.ntnu.idatg2001.wargames;
   exports no.ntnu.idatg2001.wargames.controller;
   opens no.ntnu.idatg2001.wargames.controller;
-  opens no.ntnu.idatg2001.wargames.model;
+  opens no.ntnu.idatg2001.wargames.game;
 }

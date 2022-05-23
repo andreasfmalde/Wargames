@@ -2,7 +2,7 @@ package no.ntnu.idatg2001.wargames.model.battle;
 
 import java.util.List;
 import java.util.Random;
-import no.ntnu.idatg2001.wargames.model.Terrain;
+import no.ntnu.idatg2001.wargames.game.Terrain;
 import no.ntnu.idatg2001.wargames.model.army.Army;
 import no.ntnu.idatg2001.wargames.model.unit.Unit;
 
