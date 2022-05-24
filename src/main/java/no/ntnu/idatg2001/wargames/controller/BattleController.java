@@ -49,10 +49,11 @@ public class BattleController implements Initializable {
   private XYChart.Series<String,Number> armyTwoChart;
   private Terrain terrain;
   private int simulationSpeed;
-  private boolean simulationRun; // Keeping track of if the simulation has run, but is not finished
+  private boolean simulationRunning; // Keeping track of if the simulation has run, but is not finished
   private boolean firstRun; // Used to make sure copies of armies are only made at the start
-  private boolean simulationFinished;
-  private int counter;
+  private boolean simulationFinished; // Keeping track if the simulation has finished successfully
+  private boolean resetPressed; // Used to make sure the reset button is not pressed when it shouldn't
+  private int counter; // Counter used in the graphical chart to update through time
 
   // ----- JavaFX variables -----
   @FXML
@@ -73,7 +74,6 @@ public class BattleController implements Initializable {
   private Label winnerLabel;
   @FXML
   private Label winnerText;
-
   @FXML
   private LineChart<String,Number> lineChart;
 
@@ -103,8 +103,9 @@ public class BattleController implements Initializable {
     SpinnerValueFactory<Integer> spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(5,120,80,5);
     simulationSpinner.setValueFactory(spinnerFactory);
     simulationSpeed = simulationSpinner.getValue();
-    simulationRun = false;
+    simulationRunning = false;
     simulationFinished = false;
+    resetPressed = true;
     firstRun = false;
     counter = 0;
     // Instantiate xy series used in the graph
@@ -126,6 +127,7 @@ public class BattleController implements Initializable {
    */
   @FXML
   private void createArmyButtonPressed() throws IOException {
+    manager.cleanManagerLists();
     Stage stage =(Stage)leftArmy.getScene().getWindow();
     Parent root = ViewLoader.getFXML("create-army").load();
     stage.setScene(new Scene(root));
@@ -137,7 +139,7 @@ public class BattleController implements Initializable {
    */
   @FXML
   private void simulateBattle() {
-    if(!simulationRun && !simulationFinished){
+    if(!simulationRunning && !simulationFinished){
       try{
         // Get the simulation speed value from the spinner
         simulationSpeed = simulationSpinner.getValue();
@@ -160,11 +162,27 @@ public class BattleController implements Initializable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
         // The simulation has run
-        simulationRun = true;
+        simulationRunning = true;
+        resetPressed = false;
       }catch (IllegalStateException | IllegalArgumentException e){
         new Alert(Alert.AlertType.ERROR,e.getMessage()).showAndWait();
+      }catch (Exception e){ // An unexpected error has occurred
+        showUnexpectedErrorMessage();
       }
     }
+  }
+
+  /**
+   * If an unexpected exception occurs, a message
+   * will pop up saying there is an unexpected error
+   */
+  private void showUnexpectedErrorMessage(){
+    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+    errorAlert.setTitle("Unexpected Error");
+    errorAlert.setHeaderText("An unexpected error occurred");
+    errorAlert.setContentText("Something went wrong... If this message continues to pop up, " +
+        "try to restart the program. The bug will be worked on in a later release");
+    errorAlert.showAndWait();
   }
 
   /**
@@ -192,7 +210,7 @@ public class BattleController implements Initializable {
     if(battle.isThereAWinner()){
       timeline.stop();
       simulationFinished = true;
-      simulationRun = false;
+      simulationRunning = false;
       winnerLabel.setText(manager.getUnitWithArmiesLeft());
       winnerText.setText("Winner:");
 
@@ -268,7 +286,7 @@ public class BattleController implements Initializable {
   private void stopSimulation() {
     if (timeline != null){
       timeline.stop();
-      simulationRun = false;
+      simulationRunning = false;
     }
   }
 
@@ -278,17 +296,24 @@ public class BattleController implements Initializable {
    */
   @FXML
   private void resetButtonPressed(){
-    if(!simulationRun){
-      manager.resetBattle();
-      terrain = null;
-      resetTerrainButtonStyle();
-      messageList.clear();
-      simulationRun = false;
-      simulationFinished = false;
-      firstRun = false;
-      winnerLabel.setText("");
-      winnerText.setText("");
-      resetGraph();
+    if(!simulationRunning && !resetPressed){
+      try{
+        manager.resetBattle();
+        terrain = null;
+        resetTerrainButtonStyle();
+        messageList.clear();
+        simulationRunning = false;
+        simulationFinished = false;
+        resetPressed = true;
+        firstRun = false;
+        winnerLabel.setText("");
+        winnerText.setText("");
+        resetGraph();
+      }catch (Exception e){
+        // An unexpected error has occurred
+        showUnexpectedErrorMessage();
+      }
+
     }
 
   }
@@ -299,6 +324,7 @@ public class BattleController implements Initializable {
    */
   @FXML
   private void aboutButtonPressed()throws IOException{
+    manager.cleanManagerLists();
     Stage stage =(Stage)leftArmy.getScene().getWindow();
     Parent root = ViewLoader.getFXML("about-page").load();
     stage.setScene(new Scene(root));

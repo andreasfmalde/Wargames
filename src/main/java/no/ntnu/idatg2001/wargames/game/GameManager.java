@@ -94,6 +94,13 @@ public class GameManager {
     return armies;
   }
 
+  /**
+   * Clear all lists containing armies and observers
+   */
+  public void cleanManagerLists(){
+    armies.clear();
+    observers.clear();
+  }
 
   /**
    * Distribute information to all observers to reset to
