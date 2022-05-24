@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,6 +58,8 @@ public class CreateArmyController implements Initializable {
     typeComboBox.setItems(FXCollections.observableArrayList(values));
     unitList = FXCollections.observableArrayList();
     unitListView.setItems(unitList);
+    textFieldListener(unitHealth); // Adding text listener to unit health TextField to accept digits
+    textFieldListener(unitAmount); // Adding text listener to unit amount TextField to accept digits
   }
 
   /**
@@ -75,10 +78,35 @@ public class CreateArmyController implements Initializable {
       File file = chooser.showSaveDialog(armyName.getScene().getWindow());
       if(file != null){
         FileHandler.writeArmyToFile(army,file);
+        resetScreen();
       }
     }catch (IOException | IllegalArgumentException e){
       new Alert(Alert.AlertType.WARNING,e.getMessage()).showAndWait();
     }
+  }
+
+  /**
+   * Reset all components on screen to their original state.
+   */
+  private void resetScreen(){
+    for(TextField field : new TextField[]{armyName,unitName,unitHealth,unitAmount}){
+      field.setText("");
+    }
+    removeAllUnits();
+    typeComboBox.getSelectionModel().clearSelection();
+  }
+
+  /**
+   * Method which restricts text field input to only accept digits.
+   * @param textField TextField in GUI.
+   */
+  private void textFieldListener(TextField textField) {
+    ChangeListener<String> cl = (observableValue, oldValue, newValue) -> {
+      if (!newValue.matches("\\d")) {
+        textField.setText(newValue.replaceAll("[^\\d]", ""));
+      }
+    };
+    textField.textProperty().addListener(cl);
   }
 
   /**
