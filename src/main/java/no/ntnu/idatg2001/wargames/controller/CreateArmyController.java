@@ -54,7 +54,7 @@ public class CreateArmyController implements Initializable {
    */
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    String[] values = {"InfantryUnit","RangedUnit","CavalryUnit","CommanderUnit"};
+    String[] values = {"InfantryUnit", "RangedUnit", "CavalryUnit", "CommanderUnit"};
     typeComboBox.setItems(FXCollections.observableArrayList(values));
     unitList = FXCollections.observableArrayList();
     unitListView.setItems(unitList);
@@ -76,7 +76,7 @@ public class CreateArmyController implements Initializable {
       chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Comma Separated File","*.csv"));
       chooser.setInitialDirectory( new File(Paths.get(".").toAbsolutePath().normalize().toString()));
       File file = chooser.showSaveDialog(armyName.getScene().getWindow());
-      if(file != null){
+      if (file != null){
         FileHandler.writeArmyToFile(army,file);
         resetScreen();
       }
@@ -120,7 +120,7 @@ public class CreateArmyController implements Initializable {
       String name = unitName.getText();
       int health = Integer.parseInt(unitHealth.getText());
       int amount = Integer.parseInt(unitAmount.getText());
-      if(unitList.size() + amount > Army.getMaxLimitOfUnits()){
+      if (unitList.size() + amount > Army.getMaxLimitOfUnits()){
         throw new IllegalArgumentException("Your total number of units will exceed the max limit of "+Army.getMaxLimitOfUnits());
       }
       unitList.addAll(UnitFactory.createMultipleUnits(amount,unitType,name,health));
@@ -163,7 +163,7 @@ public class CreateArmyController implements Initializable {
   @FXML
   private void deleteUnit() {
     Unit unitToRemove =  unitListView.getSelectionModel().getSelectedItem();
-    if(unitToRemove == null){
+    if (unitToRemove == null){
       new Alert(Alert.AlertType.INFORMATION,"Please select a unit from the list to remove").showAndWait();
     }else{
       unitList.remove(unitToRemove);
